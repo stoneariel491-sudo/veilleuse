@@ -1,0 +1,23 @@
+/target
+# Les captures NE SONT PAS ignorees : ce sont les preuves qui soutiennent
+# chaque chiffre des documents. Sans elles, ceux-ci ne sont que des
+# affirmations. Seul l'executable reste dehors, parce qu'il se reconstruit et
+# qu'il pese dix megaoctets a chaque version.
+/dist
+/recherche/*/target
+
+# LaTeX : les residus de compilation, jamais le .tex ni le .pdf
+/article/*.aux
+/article/*.log
+/article/*.out
+/article/*.toc
+/article/*.fls
+/article/*.fdb_latexmk
+/article/*.synctex.gz
+
+# Python : les caches de bytecode des outils
+__pycache__/
+
+# Les copies de travail des agents. Chacune est une copie entiere du depot :
+# les commiter ferait entrer le depot dans lui-meme.
+/.claude/

@@ -1,0 +1,55 @@
+[package]
+name = "verre-taille"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+png = "0.17"
+wgpu = "=30.0.1"
+pollster = "0.4"
+bytemuck = { version = "1", features = ["derive"] }
+
+[dependencies.windows]
+version = "0.62"
+features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Direct3D",
+    "Win32_Graphics_Direct3D11",
+    "Win32_Graphics_Dxgi",
+    "Win32_Graphics_Dxgi_Common",
+    "Win32_Graphics_Gdi",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_HiDpi",
+    "Win32_System_LibraryLoader",
+]
+
+[lib]
+name = "verre_taille"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sonde"
+path = "src/sonde.rs"
+
+[[bin]]
+name = "verre"
+path = "src/verre.rs"
+
+[profile.release]
+opt-level = 2
+
+[[bin]]
+name = "regime"
+path = "src/regime.rs"
+
+[[bin]]
+name = "optique"
+path = "src/optique.rs"
+
+[[bin]]
+name = "matiere"
+path = "src/matiere.rs"
+
+[[bin]]
+name = "mesure"
+path = "src/mesure.rs"

@@ -1,0 +1,21 @@
+// L'icone de l'application, embarquee en ressource.
+//
+// Une seule ligne, et chacun de ses trois morceaux a sa raison.
+//
+// L'IDENTIFIANT 1. Windows prend comme icone de programme la ressource
+// RT_GROUP_ICON dont l'identifiant vient en premier : sous Windows NT la
+// premiere listee dans le script de ressources, sous les regles plus anciennes
+// la premiere par ordre alphabetique du nom puis l'identifiant numerique le
+// plus bas (l'article « Icons », 29 septembre 1995 ; la page « About Icons »,
+// mise a jour le 11 mars 2025). Sous les deux regles, la conclusion est la
+// meme : une seule icone d'application, posee en premier, identifiant 1.
+//
+// LE MOT-CLE ICON. Il fait ecrire au compilateur de ressources un
+// RT_GROUP_ICON — le pendant d'ICONDIR dans l'executable — et autant de
+// RT_ICON qu'il y a d'entrees dans le fichier. Les quatorze y passent.
+//
+// LE FICHIER. `veilleuse.ico`, quatorze entrees, ecrit octet par octet par
+// `captures/integration-icone/pas6-le-fichier.py` depuis la structure de
+// l'article de 1995. Le chemin est relatif a ce fichier `.rc`.
+
+1 ICON "veilleuse.ico"

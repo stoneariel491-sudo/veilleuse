@@ -1,0 +1,80 @@
+[package]
+name = "veilleuse"
+version = "0.1.0"
+edition = "2021"
+description = "Horloge a volets plein ecran pour les nuits de lecture"
+license = "MIT"
+# `recherche/` porte des paquets a part, bancs d'essai qui ne font pas
+# partie du programme. Sans cette exclusion, cargo refuse un paquet imbrique.
+exclude = ["recherche"]
+
+[dependencies]
+# Les trois versions sont accordees par glyphon : glyphon 0.12 impose wgpu 30
+# et cosmic-text 0.19, et winit 0.30 est la version contre laquelle il est teste
+# (ARCHITECTURE.md §0). Ne pas monter winit en 0.31 : preversion, crate eclate.
+winit = "0.30"
+wgpu = "30.0"
+glyphon = "0.12"
+
+bytemuck = { version = "1", features = ["derive"] }
+pollster = "0.4"
+png = "0.17"
+
+[target.'cfg(windows)'.build-dependencies]
+# L'icone de l'application entre dans l'executable par `build.rs`, qui compile
+# `assets/veilleuse.rc`. La caisse est la plus utilisee et la plus active des
+# trois (ICONE-FONDATIONS.md §1.3) ; `winres` est abandonnee depuis cinq ans.
+embed-resource = "3.0"
+
+[target.'cfg(windows)'.dependencies]
+# GetLocalTime donne l'heure locale, le jour de la semaine et les millisecondes
+# sans aucune dependance de date supplementaire.
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_System_SystemInformation",
+    "Win32_UI_WindowsAndMessaging",   # SPI_GETCLIENTAREAANIMATION
+    # CreateRoundRectRgn / SetWindowRgn : la decoupe de l'ilot, qui decide de ce
+    # que la souris traverse (ilot.rs). SetWindowRgn vit dans user32 mais
+    # windows-sys la range avec les regions, sous Graphics::Gdi.
+    "Win32_Graphics_Gdi",
+    # DwmSetWindowAttribute : l'ilot demande a ne pas etre arrondi (ilot.rs).
+    "Win32_Graphics_Dwm",
+    # GetModuleHandleW : la toile de l'oeil (toile.rs).
+    "Win32_System_LibraryLoader",
+    # RegGetValueW : la couche de compatibilite DPI relue (bureau.rs).
+    "Win32_System_Registry",
+    # RegisterHotKey : le raccourci de la matiere, Ctrl+Alt+Maj+G (systeme.rs).
+    "Win32_UI_Input_KeyboardAndMouse",
+    # SetWinEventHook : le premier plan, lu sur ses changements et jamais par
+    # interrogation (systeme.rs, la presence de l'ilot).
+    "Win32_UI_Accessibility",
+    # SHQueryUserNotificationState : plein ecran et mode presentation (systeme.rs).
+    # Set/GetCurrentProcessExplicitAppUserModelID : l'identifiant de modele
+    # d'application, qui apparie la fenetre et le raccourci epingle (systeme.rs).
+    "Win32_UI_Shell",
+    # CoTaskMemFree : rendre la chaine que GetCurrentProcessExplicitAppUserModelID
+    # alloue (systeme.rs).
+    "Win32_System_Com",
+    # GetSystemPowerStatus : l'economiseur de batterie (systeme.rs, pas 7).
+    "Win32_System_Power",
+] }
+# La duplication du bureau sous l'ilot (bureau.rs) : ce sont des interfaces COM,
+# que windows-sys ne porte pas. Meme version que le laboratoire
+# `recherche/verre-taille`, ou le code a ete mesure, et deja presente dans le
+# graphe par wgpu.
+windows = { version = "0.62", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Direct3D",
+    "Win32_Graphics_Direct3D11",
+    "Win32_Graphics_Dxgi",
+    "Win32_Graphics_Dxgi_Common",
+    "Win32_UI_HiDpi",
+    "Win32_UI_WindowsAndMessaging",
+    # La barre des taches (ITaskbarList2) : winit marque l'horloge plein ecran
+    # « application plein ecran », ce qui la soustrait a Win+D ; on la demarque.
+    "Win32_UI_Shell",
+    "Win32_System_Com",
+] }
+
+[profile.release]
+opt-level = 3

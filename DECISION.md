@@ -4,15 +4,14 @@ L'auteur a délégué le choix en ces mots : « le rendu optimal, réaliste et b
 Les trois mots comptent ensemble. Un bord réaliste qui passe au-dessus de la
 hiérarchie des encres est laid au sens de `DESIGN.md`. Un bord calme qui a perdu
 sa réfraction est beau peut-être, mais ce n'est plus du verre taillé. Ce document
-tranche les trois arbitrages que `TOUR3.md` a laissés ouverts, dit ce que chacun
+tranche les trois arbitrages que le tour 3 a laissés ouverts, dit ce que chacun
 coûte, et donne à l'intégrateur la liste exacte des paramètres.
 
 **La direction décidée s'appelle ARBITREE** dans `recherche/verre-taille/src/mesure.rs`.
 C'est la RETENUE avec une seule différence : la force de la réflexion passe de
 0,30 à ~~**0,25**~~ ~~**0,19**~~ **une force par échelle d'affichage**. *Corrigé
-à l'intégration après l'épreuve (`INTEGRATION-APRES-EPREUVE.md`, pas 1 et pas
-1 bis) : 0,25 était dérivée sur le ruban du banc, à l'échelle 1 ; sous la loi de
-`DECISION-APRES-EPREUVE.md` A1 (la lumière que le verre émet, lue
+à l'intégration après l'épreuve : 0,25 était dérivée sur le ruban du banc, à l'échelle 1 ; sous la loi de
+la décision après l'épreuve, A1 (la lumière que le verre émet, lue
 dépremultipliée sur la couverture exacte de l'application, coins compris), le
 pire pixel monte avec l'échelle, parce que le congé la suit et que le premier
 pixel physique lit une tranche plus raide de Fresnel ; une force unique pour
@@ -20,9 +19,7 @@ quatre échelles tombait à 0,19. L'auteur, à qui la question a été posée (�
 force unique pour toutes les échelles, ou une force par échelle ? »), a
 répondu : « Une par échelle ». La force est donc, à chaque échelle que Windows
 propose, la plus grande du balayage au centième dont le pire pixel tient
-≤ 90,37 sur huit fonds et deux états, lue par l'application sur l'Intel UHD
-(`captures/integration-apres-epreuve/pas1/lisere-aux-echelles*.txt`,
-`lisere-e*.txt`) :*
+≤ 90,37 sur huit fonds et deux états, lue par l'application sur l'Intel UHD :*
 
 | échelle | 1 | 1,25 | 1,5 | 1,75 | 2 | 2,25 | 2,5 | 3 | 3,5 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -36,8 +33,8 @@ pas touchée. Les directions RETENUE, PASSE-BAS et FLOU-FORT (la proposition du
 partisan de la nuit) restent nommées à côté, pour que chaque tableau garde sa
 colonne d'AVANT.
 
-Toutes les mesures citées viennent de `captures/mesure/banc.txt`, essai 8.H,
-sauf mention contraire. Le banc a tourné sainement deux fois avec la force 0,25.
+Toutes les mesures citées viennent du journal du banc, essai 8.H, sauf
+mention contraire. Le banc a tourné sainement deux fois avec la force 0,25.
 L'essai 8.H est identique d'un lancement à l'autre, et les instruments sont
 valides 9 sur 9. Aucun chiffre de ce document ne vient de l'instrument 6.
 
@@ -77,13 +74,12 @@ Les trois épreuves ont tourné dans le même lancement, et chaque verdict a
 imprimé son propre échec. L'instrument 8 est passé à FAUX, 8 instruments sur 9.
 Après restauration : 9 sur 9.
 
-Deux chiffres dont je dépends ont été refaits par un autre chemin :
+Deux chiffres dont la décision dépend ont été refaits par un autre chemin :
 
 - **Le plafond** : luminance de `#5E5B57`, calculée hors du banc en Python,
   vaut **91,37**, comme le banc.
-- **Le premier pixel du blanc** : je l'ai recalculé depuis la réflectance
-  moyennée publiée, 0,2782 (`OPTIQUE.md` §4), sans passer par le code du banc.
-  J'obtiens 86,2 à la force 0,25 (banc : 86), 92,1 à 0,30 (banc : 92) et 84,9 à
+- **Le premier pixel du blanc** : recalculé depuis la réflectance moyennée,
+  0,2782, sans passer par le code du banc, il vaut 86,2 à la force 0,25 (banc : 86), 92,1 à 0,30 (banc : 92) et 84,9 à
   0,24 (banc : 84). Les deux chemins s'accordent à un octet près. Le reste
   d'écart vient du fait que le banc ne compte la réflexion que sur les prises
   qui voient hors du galet ; le calcul fait à la main ne le fait pas.
@@ -96,7 +92,7 @@ Deux chiffres dont je dépends ont été refaits par un autre chemin :
 `smoothstep`. Elle reste vraie de ce qu'elle mesure, et 0,25 reste la force de
 l'échelle 1. Ce qui entre dans `galet.rs` est désormais une table par échelle,
 dérivée par l'application elle-même sur sa couverture exacte
-(`INTEGRATION-APRES-EPREUVE.md`, pas 1 bis, décision de l'auteur) ; ~~0,19,
+(intégration après l'épreuve, pas 1 bis, décision de l'auteur) ; ~~0,19,
 force unique aux quatre échelles~~ (pas 1) n'a vécu qu'un pas.*
 
 ### La mesure
@@ -131,13 +127,13 @@ la force sur la seule couverture exacte n'est pas refaite.
 - **Le pas du centième n'est pas un goût.** Sur le blanc, un centième de force
   déplace le coin d'un à deux octets. C'est le pas de l'image. Au pas de 0,02
   (essai 8.F), 0,25 n'avait simplement jamais été rendu. La phrase « seule 0,24
-  y tiendrait » est donc barrée dans `ESTHETE-TOUR2.md`, `TOUR3.md` et
-  `mesure.rs`.
+  y tiendrait » est donc barrée dans les documents du tour 2 et du tour 3 et
+  dans `mesure.rs`.
 - **La marge d'un octet n'est pas un goût non plus.** Deux arrondis d'une même
   valeur diffèrent d'un octet (témoins 8.6, 8.9, 8.13). Un pixel qui tient à
   moins d'un octet du plafond ne tient que par hasard d'arrondi. Au-delà d'un
-  octet, aucune grandeur mesurée ne dérive une marge. C'est pour cela que je
-  prends 0,25 et non 0,24, que proposait le partisan de la nuit.
+  octet, aucune grandeur mesurée ne dérive une marge. C'est pour cela que la
+  décision prend 0,25 et non 0,24, que proposait le partisan de la nuit.
 
 ### Contre le partisan du réalisme (0,30 et une dérogation)
 
@@ -146,7 +142,7 @@ entre le bord et la face. Mais le prix qu'il demande pour garder 0,30 tombe
 **précisément sur le fond le plus courant d'un bureau de jour** : une page
 blanche, un document. Le coin de l'îlot y brillerait plus que la légende
 `#5E5B57`. Or c'est la seule règle qui empêche un ornement de dépasser le texte
-(`MATIERE.md` §5.2, `DESIGN.md` §2). Une dérogation « au-dessus de 239 » est
+(`DESIGN.md` §2). Une dérogation « au-dessus de 239 » est
 bien argumentée, mais elle écrit dans la loi que le bord gagne la hiérarchie là
 où on le voit le plus souvent. Pour « beau » au sens de ce projet, où tout se
 retire jusqu'à ce qu'il ne reste que ce qui se justifie, c'est le mauvais sens.
@@ -201,7 +197,7 @@ avant que la dérivation ne la corrige à 0,25. On y lisait : dents 64 / 76,4 /
   vraisemblable, PASSE-BAS lit 45 et la RETENUE 45. À même force, FLOU-FORT lit
   41 et l'ARBITREE à 0,24 lit 41. La nuit non plus ne bouge pas : PASSE-BAS bat
   de 85,2, la RETENUE de 85,2. Tout ce que le flou gagne se gagne sur un peigne
-  de 3 px, que `RECETTES.md` défend de laisser condamner seul un réglage.
+  de 3 px, qu'on ne laisse jamais condamner seul un réglage.
 - **Ce qu'il coûte se paie partout.** FLOU-FORT ramène §5.4 à **4,3**, soit
   moins de la moitié de la cible de dix, et à peine plus que le verre seul
   (1,9). La réfraction visible disparaît, et c'est elle qui fait d'un liseré
@@ -226,8 +222,8 @@ flou n'y retire que 2 niveaux.
 
 Le calme du bord sur un fond rayé fin : 66 de dents sur le peigne gris, contre 1
 sous FLOU-FORT, et 77,4 contre 43,4 sur le rayé coloré. L'objection 4 de
-l'esthète reste **partiellement traitée**, et c'est un choix : je la tiens pour
-le prix de la réfraction, pas pour un défaut.
+l'esthète reste **partiellement traitée**, et c'est un choix : elle est tenue
+pour le prix de la réfraction, pas pour un défaut.
 
 ---
 
@@ -246,13 +242,11 @@ l'ARBITREE (instrument 3). Sur le bureau vraisemblable, la saturation vaut 0.
   déjà retirée par `nette_luminance`, que l'ARBITREE garde. Ce qui reste, c'est
   la réflexion de surface du pixel voisin. Elle ne traverse pas le corps teinté.
   Un bord plus coloré qu'un cœur flouté et teinté est la signature physique de
-  cette réflexion (`OPTIQUE.md` §5, `MATIERE.md` §5.2 : « celle du pixel de
-  bureau qui touche le galet »).
+  cette réflexion, celle du pixel de bureau qui touche le galet.
 - Elle reste à 34 % de la saturation de ce qu'elle laisse voir. Le second
   témoin de 8.B dit qu'une matière n'invente pas de couleur tant qu'elle reste
-  sous cette saturation-là. Le verre seul porte déjà 36 : la lettre de
-  `MATIERE.md` §6, « aucune saturation hors de l'axe des gris », était cassée
-  avant tout bord. Elle ne peut interdire que la couleur inventée.
+  sous cette saturation-là. Le verre seul porte déjà 36 : la règle
+  « aucune saturation hors de l'axe des gris » était cassée avant tout bord. Elle ne peut interdire que la couleur inventée.
 - Ramener le bord au cœur demanderait une force d'environ zéro, donc éteindre
   le liseré. Désaturer la seule réflexion dessinerait un trait gris à côté d'un
   voisin coloré, c'est-à-dire un contour, que `DESIGN.md` §8 interdit. **Ce
@@ -289,7 +283,7 @@ dépliée. Toute valeur qui n'est pas dans cette liste est hors de la décision.
 | `nette_sigma` | **0** | **aucun passe-bas** : la couche nette est la source brute |
 | `fresnel` | **1,0** | Fresnel exact, moyenné sur l'empreinte |
 | `prises` | **8** | prises sur l'empreinte du pixel |
-| `lisere` (force de la réflexion) | ~~**0,25**~~ ~~**0,19**~~ **table par échelle**, 0,25 à 1, 0,24 à 1,25, 0,21 à 1,5, 0,20 à 1,75, 0,19 de 2 à 2,5, 0,18 à 3, 0,17 à 3,5 | ~~dérivée, essai 8.H~~ dérivée sur la couverture exacte de l'application à chaque échelle de Windows, décision de l'auteur (`INTEGRATION-APRES-EPREUVE.md`, pas 1 bis) |
+| `lisere` (force de la réflexion) | ~~**0,25**~~ ~~**0,19**~~ **table par échelle**, 0,25 à 1, 0,24 à 1,25, 0,21 à 1,5, 0,20 à 1,75, 0,19 de 2 à 2,5, 0,18 à 3, 0,17 à 3,5 | ~~dérivée, essai 8.H~~ dérivée sur la couverture exacte de l'application à chaque échelle de Windows, décision de l'auteur |
 | `beer` | **0** | |
 | `integre` | 0 | inutilisé par `Verrier` |
 
@@ -304,7 +298,7 @@ Trois choses que l'intégration doit écrire, et qui ne le sont pas encore :
 
 1. **`DESIGN.md` §8** dit encore « Pas de flou d'arrière-plan sous l'îlot : il
    est noir opaque ». Le verre et le liseré doivent y entrer comme dérogation
-   nommée et bornée (`MATIERE.md` §6, « pas en fraude »). La borne décidée est
+   nommée et bornée, pas en fraude. La borne décidée est
    la suivante : *le premier pixel du bord, coins compris, ne dépasse pas
    `#5E5B57` (91 niveaux de luminance) sur aucun fond, blanc pur compris, avec
    la marge d'un octet*. *Fait au pas 2 de l'intégration : la phrase est barrée
@@ -341,8 +335,8 @@ Trois choses que l'intégration doit écrire, et qui ne le sont pas encore :
 - **Le liseré sur un bureau sombre à 0,25** : +3 niveaux à 0,30 (essai 8.E),
   non relu à 0,25.
 - **Le coût GPU dans l'application.** Au banc, l'ARBITREE a le même nuanceur et
-  les mêmes liaisons que la RETENUE, qui coûte « environ deux fois » la face nue
-  (`TOUR3.md`, case 4). Seul un uniforme change. L'instrument 6 est instable et
+  les mêmes liaisons que la RETENUE, qui coûte « environ deux fois » la face nue.
+  Seul un uniforme change. L'instrument 6 est instable et
   ne l'a pas relue.
 - **La désaturation de la seule réflexion**, écartée par raisonnement (elle
   dessinerait un contour), n'a pas été rendue.

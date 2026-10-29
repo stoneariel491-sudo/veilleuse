@@ -72,12 +72,8 @@ de l'application, sur un sol `#7C7974` — la seule valeur du projet qui ne soit
 pas à l'écran (`DESIGN.md` §2 et §8). L'horloge a son bouton dans la barre des
 tâches ; l'îlot reste hors barre.
 
-Pour refaire le fichier après un changement du nuanceur du galet :
-
-    python captures\integration-icone\pas2-le-sol-et-la-largeur.py
-    python captures\integration-icone\pas6-le-fichier.py
-    cargo build --release
-
+Les scripts qui ont rendu et écrit ce fichier ne sont pas dans ce dépôt ; un
+changement du nuanceur du galet ne le refait donc pas.
 `INTEGRATION-ICONE.md` dit ce qui est prouvé, comment, et avec quels témoins.
 Un avertissement qui a coûté un essai : **GDI+ (`System.Drawing.Icon`) ne sait
 pas lire une entrée PNG d'un `.ico`** — il sert la 96 à qui demande la 256.
@@ -104,7 +100,7 @@ valeur côte à côte au lieu de la choisir de mémoire.
 
 `--mouvement-reduit` force le repli que l'îlot prend quand Windows coupe les
 animations. Sans lui, la seule façon de voir cette branche serait de changer les
-réglages de la machine, qui ne sont pas les nôtres.
+réglages de Windows sur la machine.
 
 ## Le verre de l'îlot
 

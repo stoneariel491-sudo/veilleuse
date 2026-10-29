@@ -174,7 +174,7 @@ composition allant de **0,0041 à 0,0369 ms**, soit un facteur **neuf**. L'état
 d'horloge du GPU ouvre à lui seul toute la plage des chiffres publiés. Un temps
 GPU absolu ne se compare donc pas à un temps GPU absolu publié ailleurs ; seule
 une différence **appariée**, mesurée en alternance dans le même lancement, est
-reproductible. Voir `RECETTES.md`.
+reproductible.
 
 ### En régime, sur une boucle à 60 Hz
 
@@ -230,7 +230,7 @@ même prix.
 
 ---
 
-## 7. Ce que je n'ai pas mesuré, et qu'il faut savoir
+## 7. Ce qui n'est pas mesuré, et qu'il faut savoir
 
 Rien de ce qui suit n'est un obstacle connu. Ce sont des trous, et les nommer
 vaut mieux que de les laisser se découvrir en marche.
@@ -251,7 +251,7 @@ vaut mieux que de les laisser se découvrir en marche.
 
 ---
 
-## 8. Ce que j'en conclus
+## 8. La conclusion
 
 Le verre en forme de galet est **possible**, il est **plus lisible à porte
 égale** que celui du système, il **atteint le noir** la nuit, et il ne s'éteint
@@ -265,9 +265,8 @@ et démentie à un autre. Le §6 l'a remplacé par 0,215 ms, mesuré à l'horlog
 **processeur** autour de `submit` et `poll`. Le banc du métrologue le mesure
 aujourd'hui à l'horodateur du **GPU**, passe par passe, et trouve 0,264 ms —
 dont 0,008 ms seulement pour la composition, le reste étant les deux flous.
-Les deux bancs n'ont pas la même géométrie et je ne les ai pas alignés :
+Les deux bancs n'ont pas la même géométrie et n'ont pas été alignés :
 l'écart entre 0,215 et 0,264 est un trou nommé, pas une réconciliation.
-Voir `MESURER-LE-VERRE.md` §6.
 
 Le régime continu, qui était la vraie inconnue, est mesuré : **0,9 ms par
 trame la nuit**, accès jamais perdu sur la durée de l'essai.
@@ -281,8 +280,7 @@ les pannes de la duplication, et porter la chaîne dans l'application.
 
 La capture est portée dans `src/bureau.rs`, sans l'apparence : le galet reste
 noir opaque. Tout ce qui suit est lu dans l'application réelle par
-`--releve-bureau`, relevé commité dans `captures/integration/pas1-sain`, et
-détaillé dans `INTEGRATION.md`.
+`--releve-bureau`, et détaillé dans `INTEGRATION.md`.
 
 | ce que ce document affirmait | dans l'application |
 |---|---|

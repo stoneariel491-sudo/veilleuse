@@ -167,7 +167,7 @@ rien ne change : c'est toujours le vrai bureau que le compositeur montre.
 Sept fonds du banc (page de texte, bureau vraisemblable, rayé coloré, bureau
 sombre, horloge, coupé, blanc), chacun déployé (320 × 148) et replié (88 × 36),
 à l'échelle 1, contenu caché. Le rendu de l'application est composé sur les
-octets comme le fait Windows (`captures/integration/pas2-app`).
+octets comme le fait Windows.
 
 | comparaison | intérieur du galet | ruban d'un pixel | hors du galet |
 |---|---|---|---|
@@ -200,8 +200,7 @@ Le relevé pose l'îlot sur la rangée des chiffres, contenu caché, et écrit :
 - `verre-avant.png`, l'écran capturé îlot non exclu.
 
 `outils/verre-en-direct.py` refait le verre hors-écran sur ce fond, le compose
-sur les octets et compare (`captures/integration/pas2-verre-sain`,
-`en-direct-*.txt`).
+sur les octets et compare.
 
 | rendu hors-écran sur | intérieur | ruban | hors |
 |---|---|---|---|
@@ -223,8 +222,8 @@ ne s'écarte pas.
 ### La borne de `DESIGN.md` §8 dans l'application
 
 `outils/borne-du-bord.py` lit la borne sur le rendu de l'application, composé
-sur les octets comme Windows le fait. Il couvre sept fonds, déployé et replié, et
-écrit dans `captures/integration/pas2-borne`. Le seuil est le plafond moins la
+sur les octets comme Windows le fait. Il couvre sept fonds, déployé et replié.
+Le seuil est le plafond moins la
 marge d'un octet : 91,37 − 1 = 90,37. Il y a trois lectures, parce que la bande
 du banc ne veut pas dire la même chose dans les deux rendus.
 
@@ -294,7 +293,7 @@ rendu.
 
 ### Le relevé du verre en direct
 
-`captures/integration/pas2-verre-sain`, **14 verdicts sur 14**, en 22,9 s. Les
+**14 verdicts sur 14**, en 22,9 s. Les
 huit du pas 1 tiennent toujours, et six sont neufs.
 
 | verdict | témoin, réponse connue | lu | épreuve qui le fait tomber |
@@ -330,8 +329,8 @@ n'est jamais posé. Captures du binaire final comparées à celles de `cc8abeb`
   3 961 pixels non noirs sur 70 968 : trop peu pour distinguer un verre d'un
   galet noir. Le relevé pose désormais l'îlot sur la rangée des chiffres.
 - **L'intérieur du galet se lit par sa distance.** Le relevé suivant a conclu
-  FAUX, avec 6 pixels non noirs dans le galet « perdu »
-  (`captures/integration/pas2-masque-silhouette`). Relus par la distance signée
+  FAUX, avec 6 pixels non noirs dans le galet « perdu ».
+  Relus par la distance signée
   du nuanceur, ils étaient tous dans le ruban : 0 à couverture pleine, 156 dans
   le ruban. Le masque rétréci de deux pixels en x a été remplacé par la règle du
   nuanceur, d ≤ −0,5.
@@ -389,7 +388,7 @@ du pas :
 - `verre-contre-banc.py` sur les deux adaptateurs : intérieur ≤ 1 sur la NVIDIA,
   ≤ 3 sur l'Intel, témoin à 2 900 ; *sur l'Intel, le verdict de l'outil, à la
   tolérance d'un arrondi, tombe donc à FAUX, par le seul bureau rayé déployé.
-  Cette ligne ne le disait pas (`EPREUVE.md` §1)* ;
+  Cette ligne ne le disait pas* ;
 - le relevé en direct : **14 sur 14**, 3 pertes de focus ignorées ;
 - l'horloge et le galet, contre un binaire **reconstruit** depuis `cc8abeb` dans
   un arbre de travail séparé :
@@ -422,8 +421,8 @@ du pas :
 - **Retiré** : `src/verre.rs`, `--verre`, `--verre-indisponible` et l'écoute de
   `WM_POWERBROADCAST`. Voir plus bas.
 
-**Pourquoi trois images par scène.** Voir `RECETTES.md`, « Capturer ce que
-l'auteur voit d'une fenêtre exclue ». Le verre est posé puis figé, l'exclusion
+**Pourquoi trois images par scène.** Pour capturer ce que l'auteur voit d'une
+fenêtre exclue. Le verre est posé puis figé, l'exclusion
 levée le temps d'une image, et quatre égalités à zéro disent que l'image est
 jugeable. Sinon, la scène est recommencée, trois fois au plus.
 
@@ -442,8 +441,8 @@ Premier lancement et lancement final (binaire final) : **43 sur 43**
 | le cœur lit la valeur calculée (6 aplats) | `coeur_attendu` : 50 sur le blanc, (0, 23, 46) sur le bleu, à 1 niveau près | exact, en valeur la plus fréquente | `noir` : lit 0, FAUX ×6 (**28 sur 43**) ; `exclu` : lit le fond, FAUX ×6 (**28 sur 43**) |
 
 Chaque compte a été écrit avant de lancer, et chaque épreuve fait tomber
-exactement les verdicts prévus et rien d'autre
-(`captures/integration/pas3-epreuve-*`). Les épreuves sont des drapeaux :
+exactement les verdicts prévus et rien d'autre.
+Les épreuves sont des drapeaux :
 `--epreuve-oeil=noir|exclu|hors|fond`. Le binaire éprouvé est donc le binaire
 sain.
 
@@ -466,8 +465,8 @@ de travail séparé (depuis retiré), avec `comparer-captures.py` :
 | mi-course p = 0,6 à 1,25 | 0 | — |
 | mi-course p = 0,5 à 1,25 | 0 | 3 796 (contre 0,6) |
 
-Le relevé du pas 2, relancé sur le binaire final, rend **14 sur 14**
-(`captures/integration/pas3-releve-final`). Les essais unitaires passent tous,
+Le relevé du pas 2, relancé sur le binaire final, rend **14 sur 14**.
+Les essais unitaires passent tous,
 46 sur 46, dont les deux de l'œil.
 
 ### Ce que l'œil voit, dit par l'intégrateur

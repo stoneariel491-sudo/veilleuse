@@ -46,9 +46,8 @@ confondent jamais :
 | = (0, 0, 0) | 0 | la fenêtre est **opaque** |
 
 Neuf programmes, un par combinaison, chacun ouvrant, dessinant 120 trames, photographiant et
-sortant. Le dossier d'essai : `%TEMP%\claude\…\scratchpad\verre`. Les captures
-citées ici sont dans `captures/verre/` (ce dossier est dans `.gitignore`, comme tout
-`captures/`).
+sortant. Les captures de ces essais ne sont pas dans le dépôt ; les nombres
+qu'elles portent sont recopiés ici.
 
 ---
 
@@ -61,18 +60,18 @@ système accepte l'attribut sur une fenêtre sans décoration, sans condition pr
 Fond de référence : `(227,4 ; 224,4 ; 218,9)` hf 35,67 — `(99,8 ; 111,4 ; 120,3)` hf 162,00 —
 `(23,0 ; 23,0 ; 28,0)` hf 37,33.
 
-| valeur | clair | saturé | sombre | hf îlot | capture |
-|---|---|---|---|---|---|
-| 2 — `MAINWINDOW` (mica) | (239,0 ; 244,0 ; 249,0) | (239,1 ; 244,0 ; 249,0) | (239,8 ; 243,6 ; 249,0) | 0,00 | `01-mica.png` |
-| **3 — `TRANSIENTWINDOW` (acrylique)** | **(213,0 ; 212,2 ; 207,2)** | **(169,2 ; 176,3 ; 185,0)** | **(145,1 ; 146,1 ; 151,7)** | **0,4 – 0,9** | `02-acrylique.png` |
-| 4 — `TABBEDWINDOW` (mica alt) | (205,9 ; 220,9 ; 236,0) | (206,7 ; 220,2 ; 236,0) | (207,7 ; 219,8 ; 236,0) | 0,02 | `03-mica-alt.png` |
-| 1 — `NONE` | identique au fond | identique | identique | 35,7 / 162,0 / 37,3 | `04-backdrop-none.png` |
+| valeur | clair | saturé | sombre | hf îlot |
+|---|---|---|---|---|
+| 2 — `MAINWINDOW` (mica) | (239,0 ; 244,0 ; 249,0) | (239,1 ; 244,0 ; 249,0) | (239,8 ; 243,6 ; 249,0) | 0,00 |
+| **3 — `TRANSIENTWINDOW` (acrylique)** | **(213,0 ; 212,2 ; 207,2)** | **(169,2 ; 176,3 ; 185,0)** | **(145,1 ; 146,1 ; 151,7)** | **0,4 – 0,9** |
+| 4 — `TABBEDWINDOW` (mica alt) | (205,9 ; 220,9 ; 236,0) | (206,7 ; 220,2 ; 236,0) | (207,7 ; 219,8 ; 236,0) | 0,02 |
+| 1 — `NONE` | identique au fond | identique | identique | 35,7 / 162,0 / 37,3 |
 
 **Seule la valeur 3 est du verre.** Mica (2) et mica alt (4) rendent un aplat *uniforme* : la
 moyenne ne bouge pas d'un point selon qu'il y a du blanc, du magenta ou du noir derrière.
 Quelle que soit l'origine de cette teinte — Microsoft dit qu'elle est tirée du papier peint,
 et rien ici ne le contredit — ce n'est en tout cas pas la fenêtre située derrière.
-`01-mica.png` le montre sans ambiguïté : une dalle bleu très pâle posée sur les rayures, qui
+La capture le montre sans ambiguïté : une dalle bleu très pâle posée sur les rayures, qui
 n'en laisse rien passer.
 
 L'acrylique (3), lui, suit ce qu'il y a derrière. Modèle linéaire ajusté sur les trois
@@ -84,7 +83,7 @@ ilot ≈ 0,332 × fond + 137,5      (ecart maximal sur les trois zones : 1,4 / 2
 
 soit **un tiers du fond, plus une teinte blanche fixe de 137**. C'est beaucoup de blanc.
 `DWMWA_USE_IMMERSIVE_DARK_MODE` (attribut 20, valeur 1) change cette teinte, et rien
-d'autre — `08-acryl-sombre.png` :
+d'autre :
 
 ```
 ilot ≈ 0,351 × fond + 56,7
@@ -96,12 +95,12 @@ paramètre.
 
 ### `DwmExtendFrameIntoClientArea(−1)` : inutile ici, et nuisible
 
-L'appel réussit (`hr = 0x00000000`) mais **ne change rien au verre** : `05-acryl-cadre.png`
+L'appel réussit (`hr = 0x00000000`) mais **ne change rien au verre** : la capture
 donne (213,2 ; 212,1 ; 207,2) / (169,0 ; 176,4 ; 184,9) / (144,6 ; 145,8 ; 151,1), soit
 l'essai 02 au dixième près. Le fond du système atteint la zone cliente d'une fenêtre sans
 décoration **sans** qu'on ait à étendre le cadre.
 
-Et il coûte cher. Regarder `05-acryl-cadre.png` :
+Et il coûte cher. Sur la même capture :
 
 - Windows dessine **les trois boutons de légende** (réduire, agrandir, fermer) dans notre
   zone cliente ;
@@ -113,11 +112,11 @@ Trois choses que §8 de DESIGN.md interdit. **Ne pas étendre le cadre.**
 
 ### Ce dont l'acrylique a réellement besoin
 
-| on change | résultat | capture |
-|---|---|---|
-| `with_transparent(false)` au lieu de `true` | **identique** — le verre est là | `09-acryl-fenopaque.png` |
-| effacement `Color::BLACK` (alpha 1) au lieu de `TRANSPARENT` | **(0, 0, 0)** partout, verre perdu | `10-acryl-effopaque.png` |
-| adaptateur NVIDIA (`alpha_modes = [Opaque]`) | **(0, 0, 0)** partout, verre perdu | `11-acryl-nvidia.png` |
+| on change | résultat |
+|---|---|
+| `with_transparent(false)` au lieu de `true` | **identique** — le verre est là |
+| effacement `Color::BLACK` (alpha 1) au lieu de `TRANSPARENT` | **(0, 0, 0)** partout, verre perdu |
+| adaptateur NVIDIA (`alpha_modes = [Opaque]`) | **(0, 0, 0)** partout, verre perdu |
 
 Donc : l'appel `DwmEnableBlurBehindWindow` que winit fait pour `with_transparent(true)` n'est
 **pas** nécessaire quand `SYSTEMBACKDROP_TYPE` est posé — l'attribut rend seul la zone
@@ -133,20 +132,20 @@ zéro**. Sans l'un ou l'autre, il n'y a pas de verre, seulement du noir.
 L'export existe dans `user32.dll` sur cette machine (récupéré par `GetProcAddress`, jamais
 par `#[link]`) et tous les appels renvoient 1.
 
-| état | teinte | clair | saturé | sombre | hf | capture |
-|---|---|---|---|---|---|---|
-| 2 `TRANSPARENTGRADIENT` | `0x99000000` | (91,2 ; 89,7 ; 87,2) | (40,1 ; 44,4 ; 48,2) | (9,0 ; 9,0 ; 11,0) | **14,3 / 64,7 / 14,7** | `29-accent2-gradient.png` |
-| 3 `BLURBEHIND` | `0x01000000` | (186,2 ; 185,7 ; 181,1) | (94,3 ; 101,3 ; 109,8) | (32,6 ; 33,6 ; 39,0) | 1,5 – 2,3 | `20-accent3-blur.png` |
-| **4 `ACRYLICBLURBEHIND`** | `0x01000000` | (185,6 ; 185,1 ; 180,3) | (94,1 ; 101,1 ; 109,5) | (32,6 ; 33,6 ; 39,0) | 1,5 – 2,3 | — |
-| **4** | `0x99000000` | (91,5 ; 91,4 ; 89,0) | (56,1 ; 59,5 ; 63,6) | (33,3 ; 33,8 ; 36,3) | 1,2 – 1,4 | `22-accent4-a99.png` |
-| **4** | `0xE6000000` | (43,8 ; 43,9 ; 42,4) | (36,8 ; 38,4 ; 40,4) | (33,6 ; 33,9 ; 35,1) | 1,1 – 1,2 | `30-accent4-e6.png` |
-| **4** | `0xF2000000` | (36,9 ; 36,5 ; 35,7) | (33,8 ; 35,3 ; 37,0) | (33,5 ; 33,7 ; 34,8) | 1,1 – 1,2 | `31-accent4-f2.png` |
-| 4 | `0x40FFFFFF` | (224,5 ; 224,0 ; 219,7) | (156,0 ; 161,9 ; 169,0) | (110,7 ; 111,6 ; 116,5) | 1,4 – 1,8 | `24-accent4-blanc.png` |
-| 5 `HOSTBACKDROP` | `0x99000000` | identique au fond | identique | identique | 35,7 / 162,0 | — |
+| état | teinte | clair | saturé | sombre | hf |
+|---|---|---|---|---|---|
+| 2 `TRANSPARENTGRADIENT` | `0x99000000` | (91,2 ; 89,7 ; 87,2) | (40,1 ; 44,4 ; 48,2) | (9,0 ; 9,0 ; 11,0) | **14,3 / 64,7 / 14,7** |
+| 3 `BLURBEHIND` | `0x01000000` | (186,2 ; 185,7 ; 181,1) | (94,3 ; 101,3 ; 109,8) | (32,6 ; 33,6 ; 39,0) | 1,5 – 2,3 |
+| **4 `ACRYLICBLURBEHIND`** | `0x01000000` | (185,6 ; 185,1 ; 180,3) | (94,1 ; 101,1 ; 109,5) | (32,6 ; 33,6 ; 39,0) | 1,5 – 2,3 |
+| **4** | `0x99000000` | (91,5 ; 91,4 ; 89,0) | (56,1 ; 59,5 ; 63,6) | (33,3 ; 33,8 ; 36,3) | 1,2 – 1,4 |
+| **4** | `0xE6000000` | (43,8 ; 43,9 ; 42,4) | (36,8 ; 38,4 ; 40,4) | (33,6 ; 33,9 ; 35,1) | 1,1 – 1,2 |
+| **4** | `0xF2000000` | (36,9 ; 36,5 ; 35,7) | (33,8 ; 35,3 ; 37,0) | (33,5 ; 33,7 ; 34,8) | 1,1 – 1,2 |
+| 4 | `0x40FFFFFF` | (224,5 ; 224,0 ; 219,7) | (156,0 ; 161,9 ; 169,0) | (110,7 ; 111,6 ; 116,5) | 1,4 – 1,8 |
+| 5 `HOSTBACKDROP` | `0x99000000` | identique au fond | identique | identique | 35,7 / 162,0 |
 
 **Elle marche mieux que la voie officielle, sur un point et un seul : la teinte est
 réglable.** Le mot de 32 bits est un `0xAABBGGRR` — on choisit la couleur *et* son opacité.
-`24-accent4-blanc.png` (teinte blanche) et `22-accent4-a99.png` (teinte noire) sont deux
+La teinte blanche `0x40FFFFFF` et la teinte noire `0x99000000` donnent deux
 matières entièrement différentes tirées du même appel.
 
 Le reste se lit aussi :
@@ -157,8 +156,8 @@ Le reste se lit aussi :
   entre « flou » et « acrylique » ne se voit que par la teinte : l'état 3 ignore la mienne
   (`0x99000000` donne exactement les nombres de `0x01000000`), l'état 4 l'applique.
 - l'état 5 ne fait rien du tout.
-- l'acrylique ajoute son **grain** : visible au grossissement dans
-  `41-verre-region-coin.png`, un bruit de ±2 niveaux. DESIGN.md §8 interdit « pas de
+- l'acrylique ajoute son **grain** : visible au grossissement sur le coin
+  capturé, un bruit de ±2 niveaux. DESIGN.md §8 interdit « pas de
   matière » ; celle-ci vient avec, on ne la règle pas.
 
 Mêmes deux conditions qu'au §1 : adaptateur annonçant `Inherit`, effacement à alpha zéro.
@@ -300,7 +299,7 @@ ci-dessous suggère que Windows, lui, le juge coûteux.
 
 ## 5. Le repli — et l'expérience que la machine a faite toute seule
 
-Je n'ai pas touché aux réglages de Windows. Je n'en ai pas eu besoin : **au milieu de la
+Les réglages de Windows n'ont pas été touchés. Il n'en a pas été besoin : **au milieu de la
 campagne d'essais, la batterie est passée sous 20 %, l'économiseur d'énergie de Windows 11
 s'est enclenché, et tout le verre est mort d'un coup.** L'état « transparence coupée » s'est
 donc présenté de lui-même, et il a été mesuré.
@@ -326,7 +325,7 @@ passe la nuit derrière la fenêtre du livre.
 La variable n'est pas `GetForegroundWindow` — au premier essai l'îlot n'était pas au premier
 plan (une autre application l'était) et la dalle noire était bien là. C'est
 `SetForegroundWindow` appelé sur l'**autre fenêtre du même processus** qui fait disparaître
-le fond. Je n'ai pas isolé la règle plus finement, et je n'ai pas pu vérifier si la même
+le fond. La règle n'a pas été isolée plus finement, et il n'a pas été possible de vérifier si la même
 dépendance existe quand la transparence est allumée : elle s'était déjà éteinte.
 
 ### Comment le détecter
@@ -380,7 +379,7 @@ fn verre_disponible() -> bool {
 
 `economiseur == 0` reste le seul des deux signaux dont le comportement ait été observé **dans
 les deux sens** : allumé pendant la coupure, éteint pendant que le verre vivait. Le registre,
-lui, n'a jamais été vu à zéro — c'est un réglage de la machine, et il n'est pas à moi.
+lui, n'a jamais été vu à zéro — c'est un réglage de la machine, laissé tel quel.
 
 Ces changements arrivent en cours de route : l'économiseur s'enclenche à 20 % de batterie,
 c'est-à-dire au milieu d'une nuit de lecture. Il faut donc **réinterroger à chaque réveil**,
@@ -397,7 +396,7 @@ DwmGetColorizationColor ... OPAQUE=true ; economiseur=1
 ilot = (0,0,0) hf 0,00 sur les trois fonds
 ```
 
-et `91-galet-alpha-econo-coin.png` montre le coin arrondi, noir, au bord adouci, exactement
+et la capture montre le coin arrondi, noir, au bord adouci, exactement
 comme prévu. Le mécanisme du §1.4 d'ARCHITECTURE.md ne dépend pas des effets de
 transparence : il ne dépend que de `Inherit` dans `caps.alpha_modes`. **Rien à réparer, rien
 à écrire : le repli est l'application d'aujourd'hui.**
@@ -426,7 +425,7 @@ de courbures** à craindre ; notre superellipse sera seule.
 
 Le système *sait* le faire, si on le lui demande : `ROUND` donne un arc de 9 à 10 px
 physiques, soit les 8 px logiques standard de Windows 11 à l'échelle 1,25 ; `ROUNDSMALL`
-descend à 5 px. `33-coins-round-coin.png` le montre, et montre aussi ce qui vient avec : un arc de
+descend à 5 px. La capture le montre, et montre aussi ce qui vient avec : un arc de
 **cercle** — exactement ce que le §8 cherche à éviter — plus une ombre portée, visible par le
 `-1` de la première ligne et par le fond qui s'assombrit de 2,4 % autour de la fenêtre.
 
@@ -442,7 +441,7 @@ C'est le résultat qui décide, et il n'était pas prévu.
 
 **Essai décisif.** Verre acrylique posé sur la fenêtre, puis le galet peint par-dessus en
 encre noire opaque (distance signée, rayon 28). Si le verre suivait notre forme, les quatre
-coins du rectangle montreraient le fond rayé. `40-verre-rect-galetnoir-coin.png`, grossi six
+coins du rectangle montreraient le fond rayé. Le coin capturé, grossi six
 fois : **le coin est rempli de verre**, gris lisse, sans rayures. Le fond du système couvre
 tout le rectangle de la fenêtre, et l'alpha de notre nuanceur ne peut rien en retrancher —
 l'alpha dit quelle part de *notre encre* couvre le verre, jamais l'inverse.
@@ -450,13 +449,13 @@ l'alpha dit quelle part de *notre encre* couvre le verre, jamais l'inverse.
 **Et la découpe de fenêtre ne le rattrape pas.** `SetWindowRgn` avec un
 `CreateRoundRectRgn` de rayon 28, la seule découpe que Windows offre :
 
-| essai | ce qu'on voit | capture |
-|---|---|---|
-| région seule, îlot opaque | galet arrondi, bord **crénelé** (masque à un bit) | `44-region-opaque-coin.png` |
-| région + accent acrylique | notre témoin est découpé par l'arc, **le verre reste carré** | `41-verre-region-coin.png` |
-| région + `DWMSBT` 3 | idem : le verre reste carré | `42-backdrop3-region-coin.png` |
-| région posée **après** l'accent, puis accent redemandé | **le verre meurt** — dalle noire opaque | `45-region-tard-coin.png` |
-| région posée après `DWMSBT` 3, puis attribut redemandé | **le verre dégénère** — (211, 211, 211) uni | — |
+| essai | ce qu'on voit |
+|---|---|
+| région seule, îlot opaque | galet arrondi, bord **crénelé** (masque à un bit) |
+| région + accent acrylique | notre témoin est découpé par l'arc, **le verre reste carré** |
+| région + `DWMSBT` 3 | idem : le verre reste carré |
+| région posée **après** l'accent, puis accent redemandé | **le verre meurt** — dalle noire opaque |
+| région posée après `DWMSBT` 3, puis attribut redemandé | **le verre dégénère** — (211, 211, 211) uni |
 
 DWM compose le fond de système comme un visuel séparé, **sous** la surface de
 l'application ; la région ne s'applique qu'à la seconde. Il n'existe donc aucun chemin, sur
@@ -476,7 +475,7 @@ deux sont incompatibles.
 
 Contraste WCAG des trois encres de DESIGN.md contre le verre **mesuré** aux §1 et §2, sur les
 trois fonds. (Les encres n'ont pas été photographiées sur du verre vivant — l'économiseur
-d'énergie l'avait déjà coupé quand j'y suis arrivé — mais les valeurs du verre, elles, sont
+d'énergie l'avait déjà coupé à ce moment de la campagne — mais les valeurs du verre, elles, sont
 des mesures, et le contraste s'en déduit exactement.)
 
 | matière | fond | `#F2EFE9` | `#8E8B86` | `#5E5B57` |
@@ -494,7 +493,7 @@ Le tableau ci-dessus est calculé à partir de la couleur nominale des encres. C
 reçoit est autre chose : une capitale de 11 px a des fûts d'un pixel de large, et
 l'anticrénelage ne les laisse jamais atteindre leur encre. Mesure du 2026-09-12 sur des
 photographies de l'îlot déployé, après composition — « pic » est le pixel le plus éloigné de
-la matière, « cœur » la moyenne du corps du trait (`captures/orfevre/52-vibrance-quatre-etats.png`) :
+la matière, « cœur » la moyenne du corps du trait :
 
 | élément | galet noir, clair | galet noir, sombre | verre, clair | verre, sombre |
 |---|---|---|---|---|
@@ -612,9 +611,8 @@ sommet : la courbure maximale passe de `1/r` à `2,52/r` pour `n = 4`, c'est-à-
 point le plus serré du coin est deux fois et demie plus serré, mais il ne l'est qu'en un
 point et sans discontinuité.
 
-`coin-cercle-vs-superellipse-x12.png` met les deux côte à côte, grossis douze fois, à rayon
-identique : à gauche l'arc de cercle et son coude visible, à droite la superellipse `n = 4`
-qui entre dans le virage. `coin-superposition-x12.png` superpose les deux silhouettes.
+Côte à côte, grossis douze fois, à rayon identique : d'un côté l'arc de cercle et son coude
+visible, de l'autre la superellipse `n = 4` qui entre dans le virage.
 
 ### Le prix, qu'il faut connaître avant de choisir
 
@@ -634,12 +632,11 @@ rondeur apparente. **Et c'est là que le galet replié bloque.** Replié, DESIGN
 n'y a aucun bord vertical droit, et le rayon ne peut pas monter — 18 est le maximum
 géométrique. Un exposant élevé ne peut donc pas être compensé.
 
-`eventail-replie-n2-25-3-4-5-x4.png` montre les cinq, empilés : à `n = 4` et `n = 5` le galet
-n'est plus un galet, c'est une barre à coins mous. `galet-replie-x4.png` le montre encore plus
-crûment, cercle contre `n = 4`. DESIGN.md §6 appelle le galet « la seule forme qui ne dessine
+Les cinq, empilés, le montrent : à `n = 4` et `n = 5` le galet n'est plus un galet, c'est une
+barre à coins mous ; cercle contre `n = 4`, c'est encore plus cru. DESIGN.md §6 appelle le galet « la seule forme qui ne dessine
 pas de cadre » — à `n = 4` il en dessine un.
 
-**Ce que je proposerais, et c'est un arbitrage de dessin, pas une mesure :**
+**La proposition, et c'est un arbitrage de dessin, pas une mesure :**
 
 - **déployé** (320 × 148, rayon 28) : il reste 92 px de bord vertical droit de part et
   d'autre du coin, la jonction existe vraiment, la cassure se voit. `n = 4` est là le bon
@@ -656,19 +653,19 @@ coûte un `f32` de plus dans l'uniforme et rien d'autre.
 
 ---
 
-## 10. Ce que je n'ai pas mesuré
+## 10. Ce qui n'est pas mesuré
 
 - ~~**`DwmGetColorizationColor` dans l'état sain** (§5).~~ Comblé le 2026-09-12, et le
   résultat contredit l'hypothèse : voir la correction au §5.
 - **Le coût du flou pour DWM lui-même** : le §4 mesure notre cadence, pas la consommation du
   compositeur. Que Windows coupe la transparence quand il économise la batterie suggère qu'il
   n'est pas nul.
-- **Le balayage complet des teintes** : j'ai `0x01`, `0x40`, `0x99`, `0xE6`, `0xF2` et la
+- **Le balayage complet des teintes** : `0x01`, `0x40`, `0x99`, `0xE6`, `0xF2` sont mesurées, et la
   bascule d'énergie a coupé la campagne avant `0xBF` et `0xD9`. Le comportement est monotone
-  et le plancher à `#212224` est atteint dès `0x99` ; je n'attends pas de surprise entre les
-  deux, mais je ne l'ai pas vu.
+  et le plancher à `#212224` est atteint dès `0x99` ; aucune surprise n'est attendue entre les
+  deux, mais ce n'est pas vu.
 - **Le réglage manuel « Effets de transparence »** dans Paramètres › Personnalisation ›
-  Couleurs : je n'y ai pas touché, c'est un réglage de la machine et il n'est pas à moi.
+  Couleurs : non touché, c'est un réglage de la machine.
   L'économiseur d'énergie a produit le même état, ce qui rend l'essai manuel probablement
   redondant — mais « probablement » n'est pas « mesuré ».
 - **Les deux ressorts indépendants** et **l'interruptibilité avec report de vitesse** : hors
@@ -678,7 +675,7 @@ coûte un `f32` de plus dans l'uniforme et rien d'autre.
 
 ---
 
-## 11. Ce que j'en conclus
+## 11. La conclusion
 
 **Le verre est possible sur cette machine. Il ne convient pas à cet îlot.** Cinq raisons, dans
 l'ordre où elles pèsent :

@@ -22,7 +22,7 @@ L'action « Verre » / « Galet » de l'îlot déployé reste, quoi qu'il arrive
 
 ## 2. L'état des lieux, mesuré
 
-### 2.1 Les gestes d'aujourd'hui (`DESIGN.md` §6, `DESIGN-ILOT.md` §1.3)
+### 2.1 Les gestes d'aujourd'hui (`DESIGN.md` §6)
 
 | geste | galet replié | îlot déployé |
 |---|---|---|
@@ -55,7 +55,7 @@ de premier plan et **retire l'îlot**. Les clics 2 et 3 n'ont plus de cible.
 découpe GDI devance de deux trames ce qui est peint, et le voile du compositeur se
 voit dans l'écart ; la charte ne pose donc la découpe qu'au repos, et la fenêtre
 laisse passer tous les clics tant que l'avance dépasse un demi-pixel
-(`DESIGN.md` §6 ; `DESIGN-ILOT.md` §9.7 et §13 G2). Mesuré et calculé :
+(`DESIGN.md` §6). Mesuré et calculé :
 
 | échelle | 60 Hz | 120 Hz | 144 Hz |
 |---|---|---|---|
@@ -124,7 +124,7 @@ chère à retarder.
    ligne).
 2. **Il prend un geste courant sur une surface qui n'est pas la sienne.** L'îlot
    déployé couvre 320 × 148 px logiques d'onglets et de barre d'adresse (c'est
-   l'objection qui a fait changer ce clic, `DESIGN-ILOT.md` §13 G2). Or le triple
+   l'objection qui a fait changer ce clic). Or le triple
    clic est, dans un navigateur ou un traitement de texte, **le geste qui
    sélectionne une ligne ou une adresse**. Poser la matière dessus, c'est
    promettre une surprise.
@@ -250,7 +250,7 @@ un chiffre de la charte.
 `WM_HOTKEY` de la procédure de fenêtre chaînée, le drapeau atomique, l'option
 d'épreuve `--sans-raccourci`, et l'annonce de la sous-ligne. L'auteur l'a jugé :
 « c'est nul ». Le garder en second chemin coûterait une combinaison prise à tout
-le système pour une matière, ce que `DESIGN-ILOT.md` §12 relevait déjà, et
+le système pour une matière, ce que le design de l'îlot relevait déjà, et
 laisserait deux chemins pour un même geste là où la charte en veut un.
 
 La sous-ligne sous le pointeur, qui était la découverte du raccourci, devient
@@ -280,7 +280,7 @@ Elle reste le seul endroit où le geste s'apprend, avec la ligne « Raccourcis �
 
 ## 8. L'épreuve : les témoins, déclarés avant le lancement
 
-Le banc est celui de `RECETTES.md` — il bouge vraiment le curseur avant chaque
+Le banc du projet bouge vraiment le curseur avant chaque
 clic, sans quoi `SetCursorPos` sur la position courante n'émet aucun mouvement et
 l'application rejoue un point périmé. Il est étendu à ces témoins ; le compte
 attendu de chacun est écrit ici, avant la mesure.
@@ -321,7 +321,7 @@ d'échelle.
 
 ## 9. Ce que le banc a mesuré
 
-Banc : `captures/triple-clic/triple-clic.py`, lancé depuis
+Banc du triple clic (son script n'est pas dans ce dépôt), lancé depuis
 `%USERPROFILE%\dev\veilleuse-bin\676bd7fb\veilleuse.exe` (copie hors du dépôt,
 avec le `veilleuse.json` de `dist/`), le 18 septembre 2026. Écran 1920 × 1080 à
 l'échelle 1,25 et 144 Hz, îlot replié à (760, 8), point d'appui (960, 30) px
@@ -377,7 +377,7 @@ jamais FAUX.
   propres doubles clics, donc la main de l'auteur y est déjà accoutumée — mais ce
   n'est pas mesuré sur un écran à l'échelle 2, faute d'en avoir un.
 - **Le compte se ferme au départ du pointeur**, or une fenêtre traversante reçoit
-  un `WM_MOUSELEAVE` qui n'est pas un départ (`RECETTES.md`). Le galet replié au
+  un `WM_MOUSELEAVE` qui n'est pas un départ. Le galet replié au
   repos n'est pas traversant, donc le cas ne devrait pas se présenter ; s'il se
   présentait, le compte se fermerait trop tôt et le triple clic deviendrait
   intermittent. Le témoin 1, répété, est ce qui le verrait.

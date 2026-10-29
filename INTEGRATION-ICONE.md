@@ -1,7 +1,8 @@
 # L'intégration de l'icône : les douze pas, et ce que chacun a prouvé
 
-`DECISION-ICONE.md` §I donne douze pas dans l'ordre, chacun avec l'épreuve qui
-le prouve, son témoin et son compte prévu. Ce document en tient le journal : un
+La décision de l'icône, un document de travail qui n'est pas dans ce dépôt et
+que ce journal cite par ses paragraphes (§A à §I), donne au §I douze pas dans
+l'ordre, chacun avec l'épreuve qui le prouve, son témoin et son compte prévu. Ce document en tient le journal : un
 chapitre par pas, dans l'ordre, disant ce qui a été fait, l'épreuve, le témoin,
 le compte prévu, le compte obtenu, et ce qui a résisté.
 
@@ -10,21 +11,21 @@ répondu** — y compris quand elle a démenti un chiffre du document. Là où c
 arrivé, le chiffre faux est barré, ce qui l'a remplacé est écrit, et sa cause
 avec. Barrer, jamais effacer.
 
-Les instruments et les images de ce chantier sont sous
-`captures/integration-icone/`. Tout ce qui se lance se lance depuis une copie
-hors du dépôt.
+Les instruments, les relevés et les images de ce chantier ne sont pas dans ce
+dépôt ; ce qu'ils ont produit, `assets/veilleuse.ico`, l'est. Tout ce qui se
+lance se lance depuis une copie hors du dépôt.
 
 ---
 
 ## Pas 1 — La barre des tâches sombre, mesurée au lieu d'être supposée
 
 **Ce que le pas demande.** C'est le seul chiffre supposé dont tout le reste
-dépend. `ICONE-FONDATIONS.md` §3.1 l'écrit lui-même : *« le fond sombre :
+dépend. Les fondations de l'icône l'écrivaient elles-mêmes (§3.1) : *« le fond sombre :
 `#202020`, supposé, non mesuré — il aurait fallu changer le réglage de la
-machine de l'auteur »*, et `DECISION-ICONE.md` §G le classe fragilité numéro
+machine de l'auteur »*, et la décision, au §G, le classe fragilité numéro
 un des quatre documents du chantier.
 
-**Ce qui a été fait.** `captures/integration-icone/pas1-la-barre-sombre.py`
+**Ce qui a été fait.** L'instrument du pas
 lit la fenêtre `Shell_TrayWnd` par `PrintWindow` avec `PW_RENDERFULLCONTENT`,
 bascule `HKCU\…\Themes\Personalize\SystemUsesLightTheme` de 1 à 0, attend que
 la barre se soit repeinte, lit, **restaure la valeur d'origine**, attend de
@@ -70,7 +71,7 @@ chemin de capture différent — celui-ci passe par `PrintWindow`, celui-là par
 **Le chiffre, et ce qu'il décide.**
 
 > ~~Le fond sombre : `#202020`, niveau 32,00, **supposé**~~
-> (`ICONE-FONDATIONS.md` §3.1, repris par `DECISION-ICONE.md` §D.4, §H et §G).
+> (fondations de l'icône, §3.1, repris par la décision, §D.4, §H et §G).
 >
 > **Mesuré : la barre des tâches sombre de cette machine est `#212121` =
 > (33, 33, 33), niveau 33,00.** Dominante d'environ un quart de la surface ; les trois
@@ -104,34 +105,28 @@ dossier son chiffre le plus fragile.
 réglage de couleur d'accentuation, ou avec la transparence coupée. Ce relevé est
 celui de cette machine, ce jour, `EnableTransparency = 1`.
 
-**Sortie :** `captures/integration-icone/pas1-la-barre-sombre.txt`, et les trois
-images `pas1-barre-clair-avant.png`, `pas1-barre-sombre.png`,
-`pas1-barre-clair-apres.png`.
-
 ---
 
 ## Pas 2 — Le sol et la largeur, rendus pour de bon
 
-**Ce que le pas demande.** `DECISION-ICONE.md` §G le dit sans détour : *« La
+**Ce que le pas demande.** La décision, au §G, le dit sans détour : *« La
 largeur 3/4 et le sol 121,30 sont des PRÉDICTIONS, calculées sur un modèle
 linéaire calé sur un seul point mesuré. Rien n'a été rendu à cette largeur ni à
 ce sol. »* Ce pas rend les quatorze tailles au sol `#7C7974` et à la part 3/4,
 et lit sur le rendu neuf de 256 px les quatre grandeurs du §I.
 
-L'instrument est `captures/integration-icone/pas2-le-sol-et-la-largeur.py`. Il
-ne réécrit **aucune** mathématique du chantier : `instrument.py` importe celui
-du partisan de la matière et ne redéfinit que ce qui dépend des deux nombres
-changés ; `famille.py` appelle la règle du dessin en trois gestes telle
+L'instrument du pas ne réécrit **aucune** mathématique du chantier : il
+importe celui du partisan de la matière et ne redéfinit que ce qui dépend des
+deux nombres changés ; il appelle la règle du dessin en trois gestes telle
 qu'elle est — le §I écrit « la règle du dessin ne change pas », elle n'est donc
-pas recopiée, elle est appelée ; `lecture.py` reprend au mot les définitions de
+pas recopiée, elle est appelée ; et il reprend au mot les définitions de
 lecture de l'arbitre, pour que les chiffres se comparent aux siens.
 
 ### T0 — Le nuanceur du galet n'a pas bougé
 
-Le §G, point 7, porte cette réserve : *« Les images mesurées viennent du
-binaire `49d06073`, et un autre agent travaillait dans `src/` pendant ce
-chantier. Si le nuanceur du galet change, tous les chiffres du §A changent avec
-lui. »* Ce pas la lève.
+Le §G, point 7, porte cette réserve : les images mesurées viennent du binaire
+`49d06073`, et `src/` changeait pendant ce chantier ; si le nuanceur du galet
+change, tous les chiffres du §A changent avec lui. Ce pas la lève.
 
 **Témoin.** Le galet nu rendu à l'échelle 0,6 sur le même sol par le binaire de
 l'arbre commité est identique à l'octet à celui de `49d06073`. *L'instrument
@@ -298,17 +293,13 @@ partisan s'arrêtait net à la première taille. Elle a été résolue, pas
 contournée : le sol est un plan, il est peint comme un plan, et l'icône en est
 un découpage. Deux témoins et deux épreuves le prouvent.
 
-**Sortie :** `captures/integration-icone/pas2-le-sol-et-la-largeur.txt`, les
-quatorze images et les rendus bruts du nuanceur sous
-`captures/integration-icone/icones/`, les images des témoins sous `temoins/`.
-
 ---
 
 ## Pas 2 bis — Le débord du sol, prouvé aux quatorze tailles
 
 Le pas 2 n'avait prouvé le débord qu'à 256 px, et le journal l'écrivait comme
 une faiblesse. Il est prouvé ici aux quatorze — et la mesure a rendu quelque
-chose que je n'avais pas prévu.
+chose que rien ne prévoyait.
 
 **Les deux témoins du pas 2, refaits à chaque taille.** T1 : le débord
 `ceil(64 × e)` contre son double, 0 pixel d'écart. T2, l'épreuve : le même
@@ -358,17 +349,15 @@ chose.**
 avait raison : un témoin qui ne peut pas tomber ne dit rien, et savoir *où* il
 ne tombe pas est ce qui a transformé une précaution en un fait.
 
-**Sortie :** `captures/integration-icone/pas2bis-le-debord-aux-quatorze.txt`.
-
 ---
 
 ## Pas 3 — C5 et C7, sur le dessin neuf, aux quatorze tailles
 
 **Ce que le pas demande.** *« Mesurer pixel par pixel, aux quatorze tailles, la
 part de l'aire qui tient 3:1 contre `#D9D9D9` mesuré et contre le fond sombre
-du pas 1 »* (§I). L'instrument est `cibles.py` du partisan de la matière,
-**seuils inchangés** : rien n'en est réécrit, ses fonctions sont appelées par
-`captures/integration-icone/pas3-c5-et-c7.py`.
+du pas 1 »* (§I). L'instrument est celui des cibles, du partisan de la
+matière, **seuils inchangés** : rien n'en est réécrit, ses fonctions sont
+appelées telles quelles.
 
 Le fond sombre n'est plus supposé : le pas 1 l'a mesuré à `#212121`. Les trois
 colonnes sont imprimées côte à côte — le clair mesuré, le sombre mesuré, et le
@@ -418,7 +407,7 @@ marge. La cible qui ne cède pas ne cède pas.
 
 **Le compte prévu, lui, est démenti sur un point, et il faut le barrer.**
 
-> ~~C5 sombre **≥ 74 %** (prédit 74,4)~~ (`DECISION-ICONE.md` §I, pas 3).
+> ~~C5 sombre **≥ 74 %** (prédit 74,4)~~.
 >
 > **Lu : de 71,9 % à 75,6 % selon la taille.** Six tailles sur quatorze passent
 > sous 74 % — 16, 20, 40, 48, 60, 80 —, la plus basse à 71,9 %.
@@ -500,17 +489,15 @@ transporte pas aux treize autres quand la grandeur dépend d'un arrondi au
 pixel. **Les deux cibles, elles, sont tenues partout** — C5 avec vingt-deux
 points de marge, C7 abandonnée et tenue quand même.
 
-**Sortie :** `captures/integration-icone/pas3-c5-et-c7.txt`.
-
 ---
 
 ## Pas 4 — C12, la cible neuve : la matière se lit
 
-**Ce que le pas demande.** Lancer `captures/arbitre-icone/le-troisieme-chemin.py`
+**Ce que le pas demande.** Relancer l'instrument du troisième chemin de l'arbitre
 sur les images neuves, en ajoutant les quatre tailles ; les trois témoins et les
 quatre épreuves du §A.3, **tels quels**.
 
-L'instrument n'est pas réécrit : `captures/integration-icone/pas4-c12.py`
+L'instrument n'est pas réécrit : le script du pas
 l'importe et ne lui change que les images qu'il regarde et la liste des tailles.
 Ses deux grandeurs, son cadre du juge, son œil de 2 × 2 px, son plancher de
 3 niveaux, sa composante de 4 blocs, ses mille permutations et sa graine
@@ -600,17 +587,15 @@ souvent.
 Rien. Les quatre témoins tiennent, les quatre épreuves tombent, le verdict est
 matière aux quatorze tailles, et le seul compte chiffré du pas est dépassé.
 
-**Sortie :** `captures/integration-icone/pas4-c12.txt`.
-
 ---
 
 ## Pas 5 — C1, C4, C6 et C8, sur le dessin neuf
 
-**Ce que le pas demande.** *« Rejouer `cibles.py` ; ses propres épreuves,
-inchangées »* (§I). L'instrument est importé par
-`captures/integration-icone/pas5-c1-c4-c6-c8.py` ; seuls le sol, la part et les
+**Ce que le pas demande.** Rejouer l'instrument des cibles, avec ses propres
+épreuves, inchangées (§I). L'instrument est importé par le script du pas ;
+seuls le sol, la part et les
 quatorze tailles changent. Trois épreuves sont **ajoutées** — pour C4, C6 et C8,
-qui n'en avaient pas chez le partisan — parce que le socle demande que tout
+qui n'en avaient pas chez le partisan — parce que le projet demande que tout
 témoin puisse tomber, et qu'un chiffre qu'aucune épreuve ne peut faire tomber
 n'est pas une mesure.
 
@@ -628,7 +613,7 @@ est démenti, et **la cause est le troisième geste de la règle du dessin
 lui-même**.
 
 > ~~aire ≥ 95 px (prédite 103 : le galet y fait 15 × 7)~~
-> (`DECISION-ICONE.md` §I, pas 5).
+>.
 >
 > **Lu : 90 px.** Trois grandeurs portent le nom d'« aire » et ne valent pas la
 > même chose à 20 px :
@@ -770,9 +755,6 @@ troisième geste lui-même — une silhouette binaire ne sait pas voir une lampe
 Et l'épreuve de C6, qui a d'abord échoué parce qu'elle retournait le carré au
 lieu du galet ; c'est une recette, et elle est portée au pas 11.
 
-**Sortie :** `captures/integration-icone/pas5-c1-c4-c6-c8.txt`, et les images
-des épreuves sous `temoins/`.
-
 ---
 
 ## Pas 6 — Le fichier `.ico`, quatorze entrées
@@ -782,7 +764,7 @@ structure de l'article de 1995 : la 256 en PNG 32 bpp ARGB, les treize autres en
 DIB 32 bpp BGRA non prémultipliée avec leur masque AND.
 
 L'écrivain n'est pas réécrit : `ecrire_ico` du partisan de la matière est appelé
-tel quel par `captures/integration-icone/pas6-le-fichier.py`. Il pose `ICONDIR`
+tel quel par le script du pas. Il pose `ICONDIR`
 + `ICONDIRENTRY[]` + les images, encode 256 sur l'octet 0, et donne à chaque
 entrée DIB son masque AND — nul, puisque l'icône est entièrement opaque, mais
 présent, comme l'article de 1995 l'exige.
@@ -831,9 +813,9 @@ Une seule entrée en PNG, et c'est la 256 : c'est exactement l'ancienne guidance
 que Raymond Chen rapporte dans *The evolution of the ICO file format, part 4:
 PNG images*
 (https://devblogs.microsoft.com/oldnewthing/20101022-00/?p=12473, publié le
-22 octobre 2010, cité par `ICONE-FONDATIONS.md` §1.3) — *« ne compresser que
-l'image 256 × 256 »*. La formule est celle des fondations, qui ont lu la page ;
-je ne l'ai pas rouverte.
+22 octobre 2010, cité par les fondations de l'icône, §1.3) — *« ne compresser
+que l'image 256 × 256 »*. La formule est celle des fondations, qui ont lu la
+page ; elle n'a pas été rouverte ici.
 
 ### L'union de la table *Icon scaling*, vérifiée case par case
 
@@ -936,10 +918,6 @@ bande qui ne fait que quelques pourcents des pixels.
 
 Rien. Les cinq comptes sont tenus.
 
-**Sortie :** `captures/integration-icone/pas6-le-fichier.txt`, le fichier
-`assets/veilleuse.ico`, et les vingt-huit images des deux relectures sous
-`verif-loadimage/` et `verif-gdiplus/`.
-
 ---
 
 ## Pas 7 — `build.rs` et la ressource
@@ -964,7 +942,7 @@ jamais `winres`, abandonnée depuis cinq ans. Une ligne de `.rc` :
 
 Le compilateur de ressources employé est le `rc.exe` du SDK Windows
 10.0.26100.0, et **c'est relevé, pas supposé** :
-`captures/integration-icone/releve-du-compilateur.txt` énumère les huit dossiers
+le relevé du compilateur énumère les huit dossiers
 du SDK installés et montre qu'**un seul** porte un `rc.exe` x64 — celui-là. Le
 journal de `cargo -vv` montre le `.lib` que `embed-resource` produit, mais **ne
 nomme pas l'outil qu'il a appelé**, et le relevé le dit : ce qui est établi,
@@ -1048,8 +1026,6 @@ donc rapporté « aucune ressource » sur un binaire qui en portait quatorze —
 c'est précisément le genre de faux négatif qu'une épreuve de témoin ne rattrape
 pas, puisque l'épreuve attendait justement zéro. Portée au pas 11.
 
-**Sortie :** `captures/integration-icone/pas7-la-ressource.txt`.
-
 ---
 
 ## Pas 8 — Les deux icônes de fenêtre, depuis cette même ressource
@@ -1064,7 +1040,7 @@ redimensionner le reste. »* **Compte prévu :** *« `ICON_SMALL` rend 20 × 20 
 ### La lettre du §I et son compte se contredisent, et c'est le compte qui a raison
 
 > ~~`IconExtWindows::from_resource(1, **None**)` pour les deux~~
-> (`DECISION-ICONE.md` §I, pas 8).
+>.
 >
 > **Porté : `from_resource(1, Some(PhysicalSize::new(c, c)))`, où `c` est la
 > taille que le système emploie de ce côté-là** — `SM_CXSMICON` pour
@@ -1099,12 +1075,12 @@ et porte la raison ci-dessus en commentaire. `src/main.rs` charge les deux
 icônes **une seule fois**, avant la création des fenêtres, et les pose sur
 **les deux fenêtres**.
 
-*Une interprétation, et je la dis.* Le §I écrit « les deux icônes de fenêtre »
-et son épreuve dit « lire les `HICON` attachés **aux deux fenêtres** ». J'ai
-donc posé les deux icônes sur l'horloge **et** sur l'îlot. La raison est dans le
+*Une interprétation, et elle est dite.* Le §I écrit « les deux icônes de
+fenêtre » et son épreuve dit « lire les `HICON` attachés **aux deux
+fenêtres** ». Les deux icônes sont donc posées sur l'horloge **et** sur l'îlot. La raison est dans le
 §I lui-même, au pas 9 : les deux fenêtres portent `WS_EX_APPWINDOW`, donc l'îlot
 paraît dans Alt+Tab. **Ce qu'il y montrerait sans cette ligne n'est pas mesuré** —
-je ne l'ai pas ouvert, et c'est une déduction, pas un relevé : une fenêtre sans
+Alt+Tab n'a pas été ouvert, et c'est une déduction, pas un relevé : une fenêtre sans
 `ICON_SMALL` ni `ICON_BIG` n'a rien à donner à Alt+Tab, et Windows y met ce
 qu'il met. Ce qui **est** mesuré, c'est qu'avec la ligne l'îlot porte les
 entrées 20 et 40 à l'octet. Cela ne change aucune grandeur du dossier et ne
@@ -1162,9 +1138,6 @@ pas.
 
 La lettre du §I, et elle avait tort contre son propre compte. La mesure de T1
 tranche : `LR_DEFAULTSIZE` ne sait pas qu'il existe une petite icône.
-
-**Sortie :** `captures/integration-icone/pas8-les-icones-de-fenetre.txt`, et les
-quatre `HICON` extraits sous `temoins/`.
 
 ---
 
@@ -1225,10 +1198,10 @@ C'est mesuré, publié, et rien n'est changé.
 
 **Ce chiffre a été corrigé deux fois, et la seconde correction annule la
 première.** Le journal a d'abord publié `0x00040110` ; un juge a montré qu'il
-n'était dans aucune sortie, et je l'ai corrigé en `0x000c0030` en écrivant que
+n'était dans aucune sortie, et il a été corrigé en `0x000c0030` avec la mention que
 c'était **une faute de copie**. ~~Faute de copie.~~ **Ce n'en était pas une :**
 relancé après la correction, le pas 8 a rendu `0x00040110` à son tour. Le nombre
-existait ; c'est mon explication qui était fausse.
+existait ; c'est l'explication donnée qui était fausse.
 
 **La vraie cause, mesurée.** L'EXSTYLE de l'horloge **n'est pas stable** :
 l'application appelle `set_cursor_hittest(false)` après la création de la
@@ -1296,8 +1269,8 @@ espace ; chaque section en PascalCase.
 
 ### Ce qui a résisté
 
-Le deuxième chemin de l'identifiant, d'abord — il rendait « aucun » et j'ai cru
-à un échec. La lecture du contrat de `SHGetPropertyStoreForWindow` a montré que
+Le deuxième chemin de l'identifiant, d'abord — il rendait « aucun », ce qui
+passait pour un échec. La lecture du contrat de `SHGetPropertyStoreForWindow` a montré que
 c'était la réponse juste, et qu'il fallait un troisième chemin : la relecture
 chez Windows depuis le processus, avec son épreuve. Une mesure qui ne peut rendre
 qu'une seule valeur n'est pas une mesure ; celle-ci en rend deux, et on a vu les
@@ -1305,8 +1278,6 @@ deux.
 
 Et un fait mesuré qui déborde ce chantier : **le bouton dit « veilleuse.exe »**.
 Publié, non corrigé.
-
-**Sortie :** `captures/integration-icone/pas9-la-barre-des-taches.txt`.
 
 ---
 
@@ -1366,7 +1337,7 @@ Un lancement par réglage, quatre lectures chacun (deux fenêtres × deux côté
 Elles ne confirment rien : **aucun thème de contraste réel n'a été activé**, et
 c'est précisément le seul des quatre réglages où Windows pourrait substituer une
 ressource. Que Windows 11 n'exige plus de ressource d'icône dédiée est la
-position de `DECISION-ICONE.md` §I, prise sur la documentation ; **ce chantier ne
+position de la décision (§I), prise sur la documentation ; **ce chantier ne
 l'a pas vérifiée**.
 
 *Le réglage de matière de l'îlot* : la charte dit *« quand la transparence est
@@ -1413,11 +1384,9 @@ pixel d'écart. Rappelé ici, pas refait.
 
 **Le pas lui-même, relu par un juge.** Il croyait mesurer et il déduisait, sur
 quatre réglages sur cinq. Le seul qui était vraiment mesuré est le thème — parce
-que c'est le seul dont j'ai varié la condition dans le système. Le pas 10 bis
+que c'est le seul dont la condition a varié dans le système. Le pas 10 bis
 répare la moitié de ce qui manquait ; l'autre moitié est écrite comme non
 mesurée.
-
-**Sortie :** `captures/integration-icone/pas10-les-reglages.txt`.
 
 ---
 
@@ -1480,7 +1449,7 @@ restauration est donc celui du pas 1 : la dominante et les cinq rangées.
   substituer une ressource, et **il n'est pas mesuré**. Le forcer par
   `SPI_SETHIGHCONTRAST` repeint tout le bureau de l'auteur, et le projet a pour
   doctrine de ne pas toucher à ses réglages — `src/options.rs` : *« les réglages
-  de la machine, qui ne sont pas les nôtres »*. `DECISION-ICONE.md` §I le tranche
+  de la machine, qui ne sont pas les nôtres »*. La décision (§I) le tranche
   sur la documentation ; ce chantier ne l'a pas vérifié. Porté à « Ce qui
   pourrait être faux ».
 - **L'économiseur de batterie.** Il dépend de l'état d'alimentation, qu'aucune
@@ -1491,18 +1460,16 @@ restauration est donc celui du pas 1 : la dominante et les cinq rangées.
 Rien, une fois le témoin de la condition posé. Ce pas n'existe que parce qu'un
 juge a lu ce que le pas 10 affirmait et l'a confronté à ce qu'il avait fait.
 
-**Sortie :** `captures/integration-icone/pas10bis-un-vrai-reglage.txt`, et les
-trois captures de la barre.
-
 ---
 
 ## Pas 11 — Les documents
 
 **Ce que le pas demande.** Porter le §H dans `DESIGN.md` **mot pour mot** ;
-barrer « 106 à 123 » dans `ICONE-FONDATIONS.md` §3.1 et §9.3 et y porter 106 à
-122 avec sa cause ; verser à `RECETTES.md` chaque technique éprouvée en route, y
-compris les deux du partisan de la forme qu'il n'avait pas pu porter ; et écrire
-la ligne de l'icône dans `LISEZ-MOI.md`.
+barrer « 106 à 123 » dans les fondations de l'icône (§3.1 et §9.3) et y porter
+106 à 122 avec sa cause ; verser aux recettes du projet chaque technique
+éprouvée en route, y compris les deux du partisan de la forme qu'il n'avait pas
+pu porter ; et écrire la ligne de l'icône dans `LISEZ-MOI.md`. Les fondations
+et les recettes sont des documents de travail qui ne sont pas dans ce dépôt.
 
 ### `DESIGN.md`
 
@@ -1525,7 +1492,7 @@ barré, et ce qui l'a remplacé est écrit avec sa cause.**
 corrigent un chiffre **du §H**. Le quatrième, `~~from_resource(1, None)~~`, ne
 vient pas du §H — **le §H ne contient pas cette phrase**. Elle vient du §I,
 pas 8, et elle a été ajoutée au paragraphe neuf de la charte parce que c'est là
-qu'elle vit désormais. Le barré est donc celui d'une consigne, non d'un texte de
+qu'elle vit désormais. Le barré est donc celui d'une prescription, non d'un texte de
 charte, et il est signalé comme tel.
 
 | texte du §H | chiffre barré | ce qui l'a remplacé | cause |
@@ -1540,7 +1507,7 @@ que la décision achetait et que personne ne les avait : **le tour porte 80,0 %
 de ce qui distingue l'icône d'un cadre à 30 px**, et l'icône reste du verre sous
 les cinq forçages, **vingt lectures à zéro pixel**.
 
-### `ICONE-FONDATIONS.md`
+### Les fondations de l'icône
 
 Trois corrections, toutes barrées, rien d'effacé. Une seule porte une date
 dans son texte — celle de la barre sombre, mesurée le 18 septembre 2026 ; les
@@ -1557,7 +1524,7 @@ deux autres renvoient au document qui les établit.
 3. §6 : ~~« le 30 px de la barre des tâches […] ne sert à rien »~~ → **caduc**.
    L'horloge a repris son bouton, et le pas 9 l'a mesuré.
 
-### `RECETTES.md`
+### Les recettes du projet
 
 Une section neuve, **L'icône de l'application : le fichier, la ressource, et ce
 que Windows en fait**, avec **vingt-deux entrées**. Les deux premières sont celles
@@ -1591,8 +1558,7 @@ lecteurs.
 ### `LISEZ-MOI.md`
 
 Une section **L'icône**, entre les blocs et le verre : ce qu'elle est, ce qu'elle
-montre, les deux commandes qui la refont après un changement du nuanceur du
-galet, et l'avertissement sur GDI+.
+montre, et l'avertissement sur GDI+.
 
 ### Ce qui a résisté
 
@@ -1609,28 +1575,27 @@ gris mesuré de sa barre, sans jamais l'agrandir, et noter le premier mot.
 Épreuve : aucune. C'est la seule cible du dossier qui n'ait pas d'instrument, et
 il ne faut pas lui en fabriquer un. »*
 
-Je ne l'ai donc pas passée, et je n'ai fabriqué aucun instrument. J'ai préparé
-ce qu'il faut montrer, et je me suis arrêté là.
+Elle n'est donc pas passée ici, et aucun instrument n'a été fabriqué. Ce qu'il
+faut montrer est préparé, et le pas s'arrête là.
 
 **Deux images, et la seconde n'était pas prévue.**
 
-- `captures/integration-icone/pas12-le-mot-30px.png` — **la planche prescrite** :
+- **la planche prescrite** :
   l'icône de 30 px, seule, à 1:1, sur `#D9D9D9`, le gris mesuré de la barre de
   l'auteur, relu ce jour au pas 1. L'image fait 240 × 90 px ; l'icône y occupe
   30 × 30 px, ni plus ni moins.
-- `captures/integration-icone/pas12-le-mot-dans-la-barre.png` — **la même chose,
-  mais vraie** : l'icône telle qu'elle est réellement affichée dans la barre des
+- **la même chose, mais vraie** : l'icône telle qu'elle est réellement affichée dans la barre des
   tâches vivante, découpée au rectangle du bouton (55 × 60 px physiques), sans
-  une mise à l'échelle. `pas12-barre-entiere.png` porte la barre entière, 1920 ×
+  une mise à l'échelle ; une troisième image porte la barre entière, 1920 ×
   60 px, pour le contexte.
 
-Le §G, point 9, écrivait : *« Je n'ai pas vu l'icône sur l'écran de l'auteur.
-Toutes mes planches sont composées sur les octets à partir d'images de fichier.
-Une icône de 30 px dans une vraie barre des tâches vivante n'a été vue par
-personne. »* Elle l'est maintenant — et c'est cette découpe-là qu'il faut
+Le §G, point 9, notait que l'icône n'avait pas été vue sur l'écran de l'auteur :
+toutes les planches étaient composées sur les octets à partir d'images de
+fichier, et une icône de 30 px dans une vraie barre des tâches vivante n'avait
+été vue par personne. Elle l'est maintenant — et c'est cette découpe-là qu'il faut
 montrer, pour une raison que le chapitre suivant mesure.
 
-**L'ensemble déclaré**, et il n'est pas de moi : **verre, pierre, galet, nuit**.
+**L'ensemble déclaré**, fixé d'avance : **verre, pierre, galet, nuit**.
 ~~horloge~~ est barré (§B.5). Si le mot tombe hors de l'ensemble, **le dessin est
 faux**, quelles que soient les onze autres cibles — et il faudra rouvrir, pas
 rattraper.
@@ -1639,7 +1604,7 @@ rattraper.
 
 ## En plus des douze pas — ce que la barre des tâches montre vraiment
 
-Ce chapitre n'est pas un pas du §I. Il existe parce que la consigne demande
+Ce chapitre n'est pas un pas du §I. Il existe parce que le dossier demande
 *« que l'icône paraît bien dans la barre des tâches, dans l'explorateur et sur un
 raccourci »*, et parce que la planche du pas 12 a montré quelque chose que
 personne ne pouvait voir avant elle.
@@ -1743,9 +1708,6 @@ C'est la **découpe de la barre vivante** qu'il faut montrer à l'auteur, et pas
 seulement l'entrée 30 sur son gris — puisque ce n'est pas l'entrée 30 qu'il voit.
 Les deux images sont produites, et la vraie est nommée.
 
-**Sorties :** `captures/integration-icone/pas-en-plus-quelle-entree-la-barre-montre.txt`
-et `pas-en-plus-explorateur-et-raccourci.txt`.
-
 ---
 
 ## Le compte des douze pas
@@ -1791,11 +1753,11 @@ Aucun n'a été effacé. Chacun porte sa cause.
 
 ---
 
-## La machine, et ce que j'y ai laissé
+## La machine, et l'état où elle a été laissée
 
-**Ce que j'ai touché, et comment je l'ai rendu.**
+**Ce qui a été touché, et comment c'a été rendu.**
 
-| | ce que j'ai fait | l'état final, vérifié |
+| | ce qui a été fait | l'état final, vérifié |
 |---|---|---|
 | `HKCU\…\Themes\Personalize\SystemUsesLightTheme` | basculé à 0 puis restauré, deux fois (pas 1 et pas 10) | relu à **1**, identique ; la barre claire redonne `#D9D9D9` et les cinq rangées leurs 217/218 |
 | `%LOCALAPPDATA%\Veilleuse\ilot.txt` | sauvegardé avant tout, restauré | **`520 400`**, identique à la sauvegarde, comparé octet par octet |
@@ -1804,33 +1766,32 @@ Aucun n'a été effacé. Chacun porte sa cause.
 | un raccourci `.lnk` de mesure | créé dans un dossier temporaire | **effacé**, vérifié |
 | les copies de binaire hors du dépôt | une par lancement, créées en route | **effacées**, il n'en reste qu'une : `veilleuse-bin\icone-livree\`, la copie qui porte l'icône. Son nom ne porte pas d'empreinte : une copie nommée d'après un commit cesse d'être à jour au commit suivant, et le journal se mettait à courir après son propre nom |
 
-**Deux choses que je dois dire sans les adoucir.**
+**Deux choses à dire sans les adoucir.**
 
-1. **L'horloge de l'auteur ne tournait plus quand je suis arrivé au pas 9.** Elle
-   tournait au début (relevé au lancement de ce chantier : processus 37092,
-   `veilleuse-bin\676bd7fb\`, matière verre). Je ne peux pas établir qui l'a
-   fermée : mes propres lancements ne terminent que leur propre processus, par
-   son identifiant, et plusieurs autres chantiers lancent et ferment le même
-   programme en ce moment. Je l'ai relancée à la fin, depuis le même binaire,
-   dans la même matière et à la même place — ce que la consigne demande.
-2. **`ilot.txt` a changé sous ma main entre ma sauvegarde et ma restauration**,
-   et pas de mon fait : il est passé de `520 400` seul à `520 400` plus une
+1. **L'horloge de l'auteur ne tournait plus au pas 9.** Elle tournait au début
+   (relevé au lancement de ce chantier : processus 37092,
+   `veilleuse-bin\676bd7fb\`, matière verre). Qui l'a fermée n'est pas établi :
+   les lancements du chantier ne terminent que leur propre processus, par son
+   identifiant, et d'autres travaux lançaient et fermaient le même programme
+   au même moment. Elle a été relancée à la fin, depuis le même binaire, dans
+   la même matière et à la même place, comme la règle du chantier le veut.
+2. **`ilot.txt` a changé entre la sauvegarde et la restauration**, et pas du
+   fait du chantier : il est passé de `520 400` seul à `520 400` plus une
    ligne par écran, `\\.\DISPLAY1 1920x1080 689.60 24.80`, qui posait l'îlot à
    (862, 31) physiques — calculé, pas mesuré : `position_memorisee_pour`
    multiplie la position logique par l'échelle de l'écran, 689,60 × 1,25 et
-   24,80 × 1,25 —, et non à (520, 400) où l'auteur l'avait laissé. J'ai restauré
-   **ce que j'avais trouvé**, comme la consigne le demande, et je le dis ici
-   pour que le chantier voisin qui manipule ce fichier sache que sa ligne a été
-   retirée.
+   24,80 × 1,25 —, et non à (520, 400) où l'auteur l'avait laissé. C'est **ce qui
+   avait été trouvé** qui a été restauré, comme la règle du chantier le veut, et
+   c'est dit ici parce que la ligne ajoutée entre-temps a été retirée.
 
    **Et l'horloge de l'auteur, relancée ensuite, a réglé la question elle-même.**
    Le fichier porte maintenant `520 400` **et**
    `\\.\DISPLAY1 1920x1080 416.00 320.00` : 416 × 1,25 = 520 et 320 × 1,25 = 400,
    soit la même position dans les deux formats. Sous l'ancien lecteur comme sous
    le nouveau, l'îlot revient exactement où l'auteur l'avait laissé. Vérifié
-   après coup, et c'est le programme qui l'a écrit, pas moi.
+   après coup, et c'est le programme qui l'a écrit, pas le chantier.
 
-**Ce que je n'ai pas touché :** `dist\Veilleuse.exe`, qui date du 12 septembre.
+**Ce qui n'a pas été touché :** `dist\Veilleuse.exe`, qui date du 12 septembre.
 Le §I ne le demandait pas, et le mettre à jour serait livrer une version que ce
 chantier n'a pas mandat de livrer. Il a d'ailleurs gagné un second rôle : c'est
 lui, désormais, qui sert de binaire d'**avant** à l'épreuve du pas 7, parce qu'il
@@ -1844,8 +1805,8 @@ d'identifiant 1 et quatorze `RT_ICON`, vérifiées sur elle.
 
 Dans l'ordre de ce que cela coûterait.
 
-1. **Le mot n'est pas passé.** C11 est la seule cible que je ne pouvais pas
-   mesurer, et elle domine les onze autres : *« si le mot tombe hors de
+1. **Le mot n'est pas passé.** C11 est la seule cible qui ne pouvait pas être
+   mesurée, et elle domine les onze autres : *« si le mot tombe hors de
    l'ensemble, le dessin est faux »*. Onze cibles tenues ne valent rien contre
    un mot qui ne vient pas.
 
@@ -1854,7 +1815,7 @@ Dans l'ordre de ce que cela coûterait.
    pas 10 croyait l'avoir vérifié alors qu'il n'avait forcé qu'un drapeau
    interne de l'application. Le forcer pour de bon repeint tout le bureau de
    l'auteur, et le projet a pour doctrine de ne pas toucher à ses réglages.
-   `DECISION-ICONE.md` §I tranche la question sur la documentation — *« Windows
+   La décision (§I) tranche la question sur la documentation — *« Windows
    11 n'exige plus de ressource dédiée »* — et **ce chantier ne l'a pas
    vérifiée**. Ce qui est mesuré à sa place : la transparence, coupée pour de
    bon, ne change rien à l'icône, ni pour une instance en cours ni pour une
@@ -1868,12 +1829,12 @@ Dans l'ordre de ce que cela coûterait.
    **aucun candidat ne tombe à zéro**, quand l'entrée servie par `LoadImageW` y
    tombe.
 
-4. **Je n'établis pas de quelle entrée la barre des tâches part.** J'établis
-   qu'elle ne dessine ni `ICON_BIG` ni `ICON_SMALL` — c'est décisif, l'épreuve
+4. **De quelle entrée la barre des tâches part n'est pas établi.** Ce qui est
+   établi, c'est qu'elle ne dessine ni `ICON_BIG` ni `ICON_SMALL` — c'est décisif, l'épreuve
    le montre — et qu'elle met à l'échelle. Le meilleur candidat est l'icône que
    le shell donne pour le fichier, 40 × 40, réduite ; il laisse encore
    **199 pixels sur 900** d'écart. Le rééchantillonneur de la barre n'est ni la
-   moyenne d'aire ni le bilinéaire, et je ne l'ai pas identifié. **Tant que ce
+   moyenne d'aire ni le bilinéaire, et il n'est pas identifié. **Tant que ce
    n'est pas fait, on ne sait pas quelle entrée du fichier sert la surface où
    l'icône se voit le plus souvent.**
 
@@ -1899,8 +1860,8 @@ Dans l'ordre de ce que cela coûterait.
    conséquence attendue, pas une observation. Le §I demandait de mesurer et de
    rapporter, pas de trancher.
 
-9. **Le cache d'icônes de l'explorateur n'a pas été purgé.** Mes mesures du
-   chemin du shell rendent nos entrées à l'octet, donc le cache ne masque rien
+9. **Le cache d'icônes de l'explorateur n'a pas été purgé.** Les mesures du
+   chemin du shell rendent les entrées du fichier à l'octet, donc le cache ne masque rien
    ici. Mais si l'auteur voit une ancienne icône quelque part, c'est la première
    chose à écarter : `%LocalAppData%\IconCache.db` et
    `%LocalAppData%\Microsoft\Windows\Explorer\iconcache_*.db`, puis redémarrer
@@ -1914,10 +1875,9 @@ Dans l'ordre de ce que cela coûterait.
 
 ## Ce qui reste, et à qui
 
-**À l'auteur, et à lui seul :** le pas 12. Deux images l'attendent —
-`captures/integration-icone/pas12-le-mot-30px.png` (l'icône de 30 px seule sur
-son gris, à 1:1) et `pas12-le-mot-dans-la-barre.png` (la même, telle que la
-barre des tâches vivante la montre vraiment). Regarder, sans agrandir, et dire
+**À l'auteur, et à lui seul :** le pas 12. Deux images l'attendent : l'icône
+de 30 px seule sur son gris, à 1:1, et la même, telle que la barre des tâches
+vivante la montre vraiment. Regarder, sans agrandir, et dire
 le premier mot. L'ensemble déclaré est **verre, pierre, galet, nuit**.
 
 **À l'auteur, et ce n'est pas une question d'icône :** le nom du bouton
@@ -1931,19 +1891,17 @@ lequel la barre des tâches de Windows 11 compose son icône, puisque la table
 
 ## L'épreuve du juge, et ce qu'elle a coûté
 
-Le §I, pas 11, demande une **relecture par un juge qui n'a pas fait le travail**,
-et le socle en fait une règle de la barre. Un juge indépendant a relu le journal,
-les sorties brutes, les six textes de charte au mot, les corrections des
-fondations et le diff entier du code, avec une consigne qui lui disait d'être
-dur. Il l'a été, et le dossier en est sorti différent.
+Le §I, pas 11, demande une **relecture par un juge qui n'a pas fait le travail**.
+Un juge indépendant a relu le journal, les sorties brutes, les six textes de
+charte au mot, les corrections des fondations et le diff entier du code, avec
+la demande d'être dur. Il l'a été, et le dossier en est sorti différent.
 
 **Ce qu'il a confirmé.** Sur plusieurs centaines de chiffres publiés, **un seul**
 ne se retrouvait dans aucune sortie. Les textes du §H qui ne portaient pas de
 chiffre sont dans `DESIGN.md` au caractère près ; les autres avec leur barré et
-leur cause ; **rien n'a été effacé**, ni dans `DESIGN.md` ni dans
-`ICONE-FONDATIONS.md`. Le code fait ce que le §I demande sur ses quatre points,
-sans code mort, sans une ligne de prose en anglais, sans marque d'outil, et les
-commits sont sous le nom de l'auteur sans trailer.
+leur cause ; **rien n'a été effacé**, ni dans `DESIGN.md` ni dans les
+fondations de l'icône. Le code fait ce que le §I demande sur ses quatre points,
+sans code mort et sans une ligne de prose en anglais.
 
 **Les onze erreurs réelles qu'il a trouvées, et ce qu'elles sont devenues.**
 
@@ -1952,13 +1910,13 @@ commits sont sous le nom de l'auteur sans trailer.
 | 1 | **Le pas 10 ne forçait aucun réglage du système** : les cinq drapeaux sont ceux de l'application, et ils ne peuvent pas atteindre un `HICON`. Les vingt lectures étaient acquises d'avance, et le journal les donnait pour « mesuré et non déduit » | le **pas 10 bis** : un vrai réglage coupé, avec le témoin qui montre que la condition a varié (plus de 100 000 pixels sur la barre) ; et la phrase du pas 10 barrée |
 | 2 | « Aucune taille n'est laissée à la mise à l'échelle de Windows » comptée parmi les douze barrés, **mais laissée debout dans la charte** et dans le mode d'emploi | barrée dans `DESIGN.md` §8 et dans `LISEZ-MOI.md`, avec sa cause mesurée |
 | 3 | `EXSTYLE = 0x00040110` publié pour l'horloge : **ce nombre n'était dans aucune sortie** | corrigé — **puis la correction elle-même corrigée** : relancé, le pas 8 a rendu `0x00040110`. L'EXSTYLE n'est pas stable (`set_cursor_hittest` pose `WS_EX_LAYERED` et `WS_EX_TRANSPARENT` après la création) ; le pas 9 le lit maintenant deux fois et publie les deux |
-| 4 | `ICONE-FONDATIONS.md` §7.2 affirmait encore le fond sombre supposé — en énonçant une fragilité que la mesure a réalisée —, et §9.1 que l'application n'a pas de bouton | les deux barrés, avec le calcul qui montre que la conclusion tient (`#5E5B57` lit 2,39:1 contre `#212121`) |
+| 4 | Les fondations de l'icône, §7.2, affirmaient encore le fond sombre supposé — en énonçant une fragilité que la mesure a réalisée —, et §9.1 que l'application n'a pas de bouton | les deux barrés, avec le calcul qui montre que la conclusion tient (`#5E5B57` lit 2,39:1 contre `#212121`) |
 | 5 | `~~from_resource(1, None)~~` rangé parmi les « textes du §H » : le §H ne contient pas cette phrase | dit d'où elle vient — le §I pas 8 — dans le tableau et dans le texte |
 | 6 | « trois corrections, toutes barrées **et datées** » : une seule l'était | la phrase dit ce qui est vrai |
 | 7 | « les **quatre** textes du §H » suivis de six | cinq textes, six modifications, et la seule différence de forme est dite |
 | 8 | Deux commentaires de code démentis par le chantier lui-même : `ICON_BIG` décrit comme servant la barre des tâches | barrés dans `src/main.rs` et `src/systeme.rs`, avec le renvoi à la mesure |
 | 9 | « exact **à un dixième** près » là où l'écart est de deux | corrigé |
-| 10 | Le `rc.exe` du SDK affirmé sans trace ; une citation de Microsoft sans adresse | `releve-du-compilateur.txt` ajouté — un seul `rc.exe` sur la machine, et ce que le journal de `cargo` montre et ne montre pas ; l'adresse et la date de la source ajoutées |
+| 10 | Le `rc.exe` du SDK affirmé sans trace ; une citation de Microsoft sans adresse | un relevé du compilateur ajouté — un seul `rc.exe` sur la machine, et ce que le journal de `cargo` montre et ne montre pas ; l'adresse et la date de la source ajoutées |
 | 11 | `from_resource(…).ok()` avalait l'erreur en silence ; deux `clone()` inutiles | un `eprintln!` sur l'échec, les deux clones retirés |
 
 **Les sept endroits où il a jugé que le journal affirmait plus qu'il n'avait
@@ -1979,7 +1937,7 @@ chantier avait réfuté trois chapitres plus loin. **Aucune des deux n'aurait é
 trouvée par celui qui a fait le travail** : la première demandait de lire ce
 qu'un instrument prouve et non ce qu'il affiche, la seconde de relier un
 chapitre à un autre document. C'est exactement ce à quoi sert un juge qui n'a pas
-fait le travail, et c'est pourquoi le socle l'exige.
+fait le travail, et c'est pourquoi le projet l'exige.
 
 Le verdict complet, ses preuves et ses citations sont ce que ce chapitre
 résume ; ce qu'il a confirmé comme ce qu'il a cassé est porté ci-dessus sans rien

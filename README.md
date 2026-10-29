@@ -95,3 +95,11 @@ Unit tests live next to the code (`cargo test`).
   measured on other hardware.
 - The interface text is in French.
 - The study blocks are edited by hand in `veilleuse.json`; there is no settings screen.
+
+## How it was made
+
+I built Veilleuse by directing AI coding agents (Claude Code): I set the goals and the design
+rules, made the visual decisions, defined how each claim had to be measured and checked, and
+reviewed the results; the agents wrote most of the code, the measurement tools and the design
+documents. The working notes, intermediate captures and most measurement logs behind those
+documents are not part of this repository; the documents state the measurements they rely on.

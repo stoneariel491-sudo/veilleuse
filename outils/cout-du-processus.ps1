@@ -64,9 +64,9 @@ page calme lui prendrait l'ecran. Un lancement pendant lequel une entree
 arrive, ou pendant lequel une fenetre autre que celle attendue passe devant
 (le journal de l'application le dit : « parait » la ou l'horloge devait etre
 devant, « retire » la ou la page calme devait l'etre), est CONTAMINE : il est
-compte, dit, et refait, trois fois au plus. La fenetre de cette session
-(« Claude ») passe devant a chaque appel d'outil : c'est la contamination la
-plus frequente (pas8/essai-1).
+compte, dit, et refait, trois fois au plus. La fenetre de l'application qui
+lance les mesures (« Claude ») passe devant a chaque commande : c'est la
+contamination la plus frequente (pas8/essai-1).
 
 Les binaires doivent etre des COPIES hors du depot : le chemin target\release
 porte une couche de compatibilite qui y fait refuser la declaration du DPI. Le

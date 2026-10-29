@@ -706,7 +706,7 @@ Les deux sont implémentés et pilotés par un seul paramètre, `lumiere ∈ {0,
 reste ouverte. Une lecture qui réconcilie les deux textes : la carte étant noire sur noir,
 seule l'**encre** peut prendre la lumière ; assombrir l'encre n'est pas assombrir la face.
 
-**Arbitré depuis, et écrit dans la loi.** Le socle garde la lumière, DESIGN.md §5 et §8 la
+**Arbitré depuis, et écrit dans la loi.** Le projet garde la lumière, DESIGN.md §5 et §8 la
 décrivent désormais, et §2 la nomme comme sa seule dérogation aux cinq gris. Le plancher est
 0,65 en linéaire — `#C8C5C0` — et non 0,30 : plus bas, le chiffre se lisait en deux encres
 différentes à mi-bascule.
